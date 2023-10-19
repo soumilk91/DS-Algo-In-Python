@@ -66,5 +66,26 @@ class TestLinkedList(unittest.TestCase):
             runner = runner.nextNode
         self.assertEqual(6, runner.data)
 
+    def test_reverse_iterative_none(self):
+        temp = LinkedList()
+        self.assertEqual(None, temp.reverse_iterative())
+
+    def test_reverse_iterative_one_node(self):
+        temp = LinkedList()
+        temp.insertAtStart(5)
+        self.assertEqual(temp.head, temp.reverse_iterative())
+
+    def test_reverse_iterative_multiple_nodes(self):
+        temp = LinkedList()
+        temp.insertAtStart(5)
+        temp.insertAtStart(4)
+        temp.insertAtStart(3)
+        reverse_list = []
+        runner = temp.reverse_iterative()
+        while runner:
+            reverse_list.append(runner.data)
+            runner = runner.nextNode
+        self.assertEqual(reverse_list, [5,4,3])
+
 if __name__ == '__main__':
     unittest.main()

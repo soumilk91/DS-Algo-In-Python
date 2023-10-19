@@ -90,6 +90,19 @@ class LinkedList:
             self.no_of_nodes_in_ll -= 1
             #print("The last Node from the Linked List is Deleted")
 
+    def reverse_iterative(self):
+        if self.head == None or self.head.nextNode == None:
+            return self.head
+        prev = None
+        current = self.head
+        while current:
+            temp = current.nextNode
+            current.nextNode = prev
+            prev = current
+            current = temp
+        return prev
+
+
 
 
 
