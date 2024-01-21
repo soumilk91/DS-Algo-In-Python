@@ -4,7 +4,7 @@ Date: 01/17/2024
 
 Question: Given a set of distinct integers, return all possible subsets ... No duplicates
 
-The only question at each level of the recursuve tree we need to ask is INCLUDE / EXCLUDE
+The only question at each level of the recursive tree we need to ask is INCLUDE / EXCLUDE
 eg: Input = [1,2,3]
 Output: [[], [1], [2], [3], [1,2], [1,3], [2,3], [1,2,3]]
 """

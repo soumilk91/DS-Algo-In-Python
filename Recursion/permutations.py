@@ -11,7 +11,8 @@ result_list = []
 def _helper(numlist, start_index, slate):
     #Base Case
     if start_index == len(numlist):
-        result_list.append(slate[:])
+        if slate[:] not in result_list:
+            result_list.append(slate[:])
         return
 
     #Recursive Case
@@ -31,5 +32,5 @@ def _helper(numlist, start_index, slate):
 def permutations(numlist):
     _helper(numlist, 0, [])
 
-permutations([1,2,3])
+permutations([1,2,2])
 print(result_list)
