@@ -26,14 +26,50 @@ output: [9, 5, 5]
 output: [4, 3, 5]
 """
 
-#For your reference:
-class LinkedListNode:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        # get the first number
+        first_number = 0
+        runner = l1
+        power = 0
+        while runner:
+            first_number += runner.val * (10 ** power)
+            power += 1
+            runner = runner.next
+
+        # get the second number
+        second_number = 0
+        runner = l2
+        power = 0
+        while runner:
+            second_number += runner.val * (10 ** power)
+            power += 1
+            runner = runner.next
+
+        final_number = first_number + second_number
+
+        temp = ListNode(0)
+        if final_number == 0:
+            return temp
+        runner = temp
+        while final_number > 0:
+            remainder = final_number % 10
+            runner.next = ListNode(remainder)
+            runner = runner.next
+            final_number = final_number // 10
+        return temp.next
 
 
-def add_two_numbers(l_a, l_b):
+# Another Approach
+# This is Faster 
+def add_two_numbers_carry_approach(l_a, l_b):
     """
     Args:
      l_a(LinkedListNode_int32)
@@ -42,36 +78,17 @@ def add_two_numbers(l_a, l_b):
      LinkedListNode_int32
     """
     # Write your code here.
-
-    first_number = 0
-    runner = l_a
-    power = 0
-    while runner:
-        first_number += runner.value * (10 ** power)
-        power += 1
-        runner = runner.next
-
-    second_number = 0
-    runner = l_b
-    power = 0
-    while runner:
-        second_number += runner.value * (10 ** power)
-        power += 1
-        runner = runner.next
-
-    final_number = first_number + second_number
-
-    return_head = None
-    runner = None
-    while final_number > 0:
-        quotient = final_number % 10
-        final_number = final_number // 10
-        if return_head is None:
-            return_head = LinkedListNode(quotient)
-            runner = return_head
-        else:
-            runner.next = LinkedListNode(quotient)
-            runner = runner.next
-    return return_head
-
-
+    # Get the First Number  Both the Numbers
+    dummy = cur =LinkedListNode(0)
+    carry = 0
+    while l_a or l_b or carry:
+        if l_a:
+            carry += l_a.value
+            l_a = l_a.next
+        if l_b:
+            carry += l_b.value
+            l_b = l_b.next
+        cur.next = LinkedListNode(carry%10)
+        cur = cur.next
+        carry //=10
+    return dummy.next
