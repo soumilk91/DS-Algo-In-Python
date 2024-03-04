@@ -17,18 +17,18 @@ def postorder_traversal(root):
     Returns:
      list_int32
     """
-    # -> Keep a Track of visited Nodes in dict
     # Write your code here.
-    return_list = []
-    visited_dict = {}
-    runner = root
-    while runner and runner not in visited_dict:
-        if runner.left and runner.left not in visited_dict:
-            runner = runner.left
-        elif runner.right and runner.right not in visited_dict:
-            runner = runner.right
-        else:
-            visited_dict[runner] = True
-            return_list.append(runner.value)
-            runner = root
-    return return_list
+    postorder = []
+    if not root:
+        return postorder
+
+    stack = [root]
+    while stack:
+        current_node = stack.pop()
+        postorder.append(current_node.value)
+
+        if current_node.left:
+            stack.append(current_node.left)
+        if current_node.right:
+            stack.append(current_node.right)
+    return postorder[::-1]
