@@ -21,18 +21,29 @@ Explanation: There is no common prefix among the input strings.
 
 """
 
+class Solution_Better:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        shortest_string = min(strs)
+        longest_string = max(strs)
+
+        start_index = 0
+        while start_index < len(shortest_string):
+            if shortest_string[start_index] != longest_string[start_index]:
+                shortest_string = shortest_string[:start_index]
+            start_index += 1
+        return shortest_string
 
 class Solution:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
+    def longestCommonPrefix(self, strs):
         if not strs:
             return ""
-        shortest = min(strs, key=len)
-        for i, char in enumerate(shortest):
+        shortest_string_in_list = min(strs, key=len)
+        #print(shortest)
+        for i, char in enumerate(shortest_string_in_list):
             for other in strs:
                 if other[i] != char:
-                    return shortest[:i]
-        return shortest
-
+                    return shortest_string_in_list[:i]
+        return shortest_string_in_list
 
 temp = Solution()
 print(temp.longestCommonPrefix(["flower","flow","flight"]))
