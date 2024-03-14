@@ -8,30 +8,30 @@ Eg: n = 3
 output: ['((()))', '(()())', '(())()', '()(())', '()()()']
 """
 
-result = []
-def _helper(leftnumber, rightnumber, slate):
-    # Backtracking Case
-    if rightnumber < leftnumber or rightnumber < 0 or leftnumber < 0:
-        return
 
-    # Base Case
-    if leftnumber == rightnumber == 0:
-        result.append("".join(slate))
-        return
+class Solution:
+    def generateParenthesis_helper(self, left, right, slate, result):
+        # Backtraking Case
+        if right < left or left < 0 or right < 0:
+            return
 
-    # Recursive Case
-    #Left Paranthesis
-    slate.append("(")
-    _helper(leftnumber-1, rightnumber, slate)
-    slate.pop()
+        # Base Case
+        if left == right == 0:
+            result.append("".join(slate[:]))
+            return
 
-    # Right Parenthesis
-    slate.append(")")
-    _helper(leftnumber, rightnumber-1, slate)
-    slate.pop()
+        # Recursive Case
+        # Left
+        slate.append("(")
+        self.generateParenthesis_helper(left - 1, right, slate, result)
+        slate.pop()
 
-def generate_valid_parenthesis(n):
-    _helper(n,n, [])
+        # Right
+        slate.append(")")
+        self.generateParenthesis_helper(left, right - 1, slate, result)
+        slate.pop()
 
-generate_valid_parenthesis(3)
-print(result)
+    def generateParenthesis(self, n: int) -> List[str]:
+        result = []
+        self.generateParenthesis_helper(n, n, [], result)
+        return result

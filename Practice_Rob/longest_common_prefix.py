@@ -23,15 +23,21 @@ Explanation: There is no common prefix among the input strings.
 
 class Solution_Better:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        shortest_string = min(strs)
-        longest_string = max(strs)
+        shortest = min(strs)
+        longest = max(strs)
+        result = []
+        start = 0
 
-        start_index = 0
-        while start_index < len(shortest_string):
-            if shortest_string[start_index] != longest_string[start_index]:
-                shortest_string = shortest_string[:start_index]
-            start_index += 1
-        return shortest_string
+        while start < len(shortest):
+            if shortest[start] == longest[start]:
+                result.append(shortest[start])
+                start += 1
+            else:
+                break
+        if not result:
+            return ""
+        else:
+            return "".join(result)
 
 class Solution:
     def longestCommonPrefix(self, strs):

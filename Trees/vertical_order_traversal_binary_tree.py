@@ -3,7 +3,8 @@ Author: Soumil Ramesh Kulkarni
 Date: 02.25.2024
 
 Question:
-Given the root of a binary tree, return the vertical order traversal of its nodes' values. (i.e., from top to bottom, column by column).
+Given the root of a binary tree, return the vertical order traversal of its nodes' values.
+(i.e., from top to bottom, column by column).
 
 If two nodes are in the same row and column, the order should be from left to right.
 
@@ -40,7 +41,7 @@ class Solution:
         comp_dict = {}
         if not root:
             return []
-        queue = [{"node": root, "place" : 0}]
+        queue = [{"node": root, "place": 0}]
         while queue:
             temp = queue.pop(0)
             place = temp["place"]
@@ -50,7 +51,7 @@ class Solution:
             else:
                 comp_dict[place] = [node]
             if node.left:
-                queue.append({"node": node.left, "place":place-1})
+                queue.append({"node": node.left, "place": place-1})
             if node.right:
                 queue.append({"node": node.right, "place": place+1})
         a_list = sorted(comp_dict.keys())

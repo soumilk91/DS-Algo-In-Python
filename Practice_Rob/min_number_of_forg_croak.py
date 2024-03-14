@@ -3,7 +3,7 @@ Author: Soumil Ramesh Kulkarni
 Date: 03.02.2024
 
 Question:
-ou are given the string croakOfFrogs, which represents a combination of the string "croak" from different frogs,
+You are given the string croakOfFrogs, which represents a combination of the string "croak" from different frogs,
 that is, multiple frogs can croak at the same time, so multiple "croak" are mixed.
 
 Return the minimum number of different frogs to finish all the croaks in the given string.

@@ -21,13 +21,16 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 """
 
 class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort(key = lambda x: x[0])
+
+    def merged(self, intervals):
         merged = []
 
+        intervals.sort()
+
         for interval in intervals:
-            if not merged or merged[-1][-1] < interval[0]:
+            if not merged or merged[-1][1] < interval[0]:
                 merged.append(interval)
             else:
-                merged[-1][-1] = max(merged[-1][-1], interval[-1])
+                merged[-1][0] = min(merged[-1][0], interval[0])
+                merged[-1][1] = max(merged[-1][1], interval[1])
         return merged

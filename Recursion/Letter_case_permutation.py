@@ -25,32 +25,6 @@ def letterCasePermutation(input_string):
     _helper_mutable_slate(input_string, 0, [])
     print(result_list)
 
-def _helper(input_string, start_index, slate):
-    """
-    input_string and start index : are definitions of the subproblem
-    slate: Partial solution
-    result_list: final list which contains all the results
-    This helper function is using an immutable slate ... Which can increase the space complexity
-    """
-
-    #Lets Define the Base Case
-    #If we have reached the last blank of the string, append the result becase slate is a completesolution now
-    if start_index == len(input_string):
-        result_list.append(slate)
-        return result_list
-
-    #Recursive Case
-    if input_string[start_index].isnumeric():
-        slate += input_string[start_index]
-        _helper(input_string, start_index+1, slate)
-    else:
-        # Consider the case of Upper Character
-        _helper(input_string, start_index+1, slate + input_string[start_index].upper())
-
-        # Consider the case of Lower Character
-        _helper(input_string, start_index+1, slate + input_string[start_index].lower())
-
-
 def _helper_mutable_slate(input_string, start_index, slate):
     """
     IMPORTANT
@@ -79,8 +53,30 @@ def _helper_mutable_slate(input_string, start_index, slate):
         _helper_mutable_slate(input_string, start_index+1, slate)
         slate.pop()
 
+def _helper(input_string, start_index, slate):
+    """
+    input_string and start index : are definitions of the subproblem
+    slate: Partial solution
+    result_list: final list which contains all the results
+    This helper function is using an immutable slate ... Which can increase the space complexity
+    """
 
+    #Lets Define the Base Case
+    #If we have reached the last blank of the string, append the result becase slate is a completesolution now
+    if start_index == len(input_string):
+        result_list.append(slate)
+        return result_list
 
+    #Recursive Case
+    if input_string[start_index].isnumeric():
+        slate += input_string[start_index]
+        _helper(input_string, start_index+1, slate)
+    else:
+        # Consider the case of Upper Character
+        _helper(input_string, start_index+1, slate + input_string[start_index].upper())
+
+        # Consider the case of Lower Character
+        _helper(input_string, start_index+1, slate + input_string[start_index].lower())
 
 letterCasePermutation("a1b2")
 letterCasePermutation("abcd123546")
