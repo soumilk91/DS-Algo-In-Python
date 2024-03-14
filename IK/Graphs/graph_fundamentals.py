@@ -33,14 +33,9 @@ class GraphTheory:
         # A given Graph has a Euerian cycle only if all the vertices in the graph
         # have even degree
         # Degree of a vertex is the number of neighbors it has
-        odd = 0
         for vertex in self.graph:
             if len(self.graph[vertex]) % 2 != 0:
-                odd += 1
-                break
-
-        if odd != 0:
-            return False
+                return False
         return True
 
     def has_eulerian_path(self):
@@ -61,7 +56,7 @@ class GraphTheory:
         -> When you reach any node,
             -> first capture all the nieghbors put them in a queue
             -> Treverse until queue is empty
-            -> Main a dict to know if a node has been visted before
+            -> Maintain a dict to know if a node has been visted before
         """
 
         captured = {}
