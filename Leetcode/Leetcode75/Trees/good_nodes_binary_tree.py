@@ -3,7 +3,8 @@ Author: Soumil Ramesh Kulkarni
 Date: 01/29/2024
 
 Question:
-Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes with a value greater than X.
+Given a binary tree root, a node X in the tree is named good if in the path from root to X there are no nodes
+with a value greater than X.
 
 Return the number of good nodes in the binary tree.
 

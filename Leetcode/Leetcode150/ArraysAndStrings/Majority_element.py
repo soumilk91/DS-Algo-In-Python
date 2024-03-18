@@ -5,7 +5,8 @@ Date: 01/30/2024
 Question:
 Given an array nums of size n, return the majority element.
 
-The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+The majority element is the element that appears more than ⌊n / 2⌋ times.
+You may assume that the majority element always exists in the array.
 Example 1:
 
 Input: nums = [3,2,3]
@@ -28,6 +29,5 @@ class Solution(object):
                 compare_dict[i] = 1
             else:
                 compare_dict[i] += 1
-        for i in compare_dict:
-            if compare_dict[i] > len(nums)/2:
-                return i
+                if compare_dict[i] > len(nums)/2:
+                    return i
