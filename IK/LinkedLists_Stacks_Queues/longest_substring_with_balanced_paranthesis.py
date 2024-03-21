@@ -3,7 +3,8 @@ Author: Soumil Ramesh Kulkarni
 Date: 02/03/2024
 
 Question:
-Given a string brackets that only contains characters '(' and ')', find the length of the longest substring that has "balanced parentheses".
+Given a string brackets that only contains characters '(' and ')', find the length of the longest substring that has
+"balanced parentheses".
 
 Eg:
 {

@@ -14,7 +14,8 @@ Given pointer points to the node with value 4.
 Output:
 
 6
-The sequence is sorted by value so the median value is the middle node. The answer does not depend on the specific node given as input: as long as the list is as pictured, the answer is 6.
+The sequence is sorted by value so the median value is the middle node. The answer does not depend on the specific node
+given as input: as long as the list is as pictured, the answer is 6.
 
 Example Two
 Example Two

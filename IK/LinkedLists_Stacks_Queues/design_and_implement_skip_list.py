@@ -3,7 +3,8 @@ Author: Soumil Ramesh Kulkarni
 Date: 02.24.2024
 
 Question:
-Skip List is a probabilistic data structure that allows O (log(n)) search complexity as well as O (log(n)) insertion complexity within an ordered sequence of n elements.
+Skip List is a probabilistic data structure that allows O (log(n)) search complexity as well as O (log(n))
+insertion complexity within an ordered sequence of n elements.
 
 Implement it using only linked lists.
 

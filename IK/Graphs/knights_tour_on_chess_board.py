@@ -3,7 +3,9 @@ Author: Soumil Ramesh Kulkarni
 Date: 03.06.2024
 
 Question:
-You are given a chessboard with rows rows and cols columns and a knight - that moves like in normal chess - located at the start_row-th row and start_col-th column. The knight needs to reach the position at the end_row-th row and end_col-th column.
+You are given a chessboard with rows and cols columns and a knight - that moves like in normal chess -
+located at the start_row-th row and start_col-th column. The knight needs to reach the position at the end_row-th row
+and end_col-th column.
 
 Find minimum number of moves that knight needs to make to get from starting position to ending position.
 

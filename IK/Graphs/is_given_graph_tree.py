@@ -5,7 +5,8 @@ Date: 03.04.2024
 Question:
 Given an undirected graph, find out whether it is a tree.
 
-The undirected edges are given by two arrays edge_start and edge_end of equal size. Edges of the given graph connect nodes edge_start[i] and edge_end[i] for all valid i.
+The undirected edges are given by two arrays edge_start and edge_end of equal size. Edges of the given graph connect
+nodes edge_start[i] and edge_end[i] for all valid i.
 
 Example One
 Graph 1
