@@ -29,7 +29,7 @@ class GraphTheory:
             self.graph[destination].append(source)
 
 
-    def has_eulerian_cucle(self):
+    def has_eulerian_cycle(self):
         # A given Graph has a Euerian cycle only if all the vertices in the graph
         # have even degree
         # Degree of a vertex is the number of neighbors it has
