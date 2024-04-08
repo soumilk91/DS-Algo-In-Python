@@ -3,7 +3,7 @@ Author: Soumil Ramesh Kulkarni
 Date: 02/03/2024
 
 Question:
-ou have to build a min stack. Min stack should support push, pop methods (as usual stack) as well as one
+You have to build a min stack. Min stack should support push, pop methods (as usual stack) as well as one
 method that returns the minimum element in the entire stack.
 
 You are given an integer array named operations of size n, containing values >= -1.

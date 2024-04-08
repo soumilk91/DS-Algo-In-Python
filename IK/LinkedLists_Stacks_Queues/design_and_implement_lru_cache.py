@@ -4,7 +4,7 @@ Date: 02.25.2024
 
 Question:
 
-mplement a Least Recently Used (LRU) cache and execute a given sequence of SET(key, value) and GET(key) operations.
+Implement a Least Recently Used (LRU) cache and execute a given sequence of SET(key, value) and GET(key) operations.
 Return the results of all the GET operations from the sequence.
 
 Initially the cache is empty. Cache capacity is a part of the input. Keys and values are all positive. GET(key)

@@ -37,7 +37,7 @@ Output: [["Ethan","Ethan0@m.co","Ethan4@m.co","Ethan5@m.co"],["Gabe","Gabe0@m.co
 "Fern5@m.co"]]
 """
 
-
+import collections
 class UF:
     def __init__(self, N):
         self.parents = list(range(N))

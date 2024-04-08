@@ -75,7 +75,7 @@ class Solution_DFS:
         # Key is original node and value is the cloned node
         self.visited[node] = clone_node
 
-        # Iterate thorugh the neighbors and create their clones
+        # Iterate through the neighbors and create their clones
         if node.neighbors:
             for n in node.neighbors:
                 clone_node.neighbors.append(self.cloneGraph(n))

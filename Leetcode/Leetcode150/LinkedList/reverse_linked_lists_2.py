@@ -1,5 +1,5 @@
 """
-Link to the Probelm:  https://leetcode.com/problems/reverse-linked-list-ii/description/?envType=study-plan-v2&envId=top-interview-150
+Link to the Problem:  https://leetcode.com/problems/reverse-linked-list-ii/description/?envType=study-plan-v2&envId=top-interview-150
 
 Author: Soumil Ramesh Kulkarni
 Date: 02.19.2024

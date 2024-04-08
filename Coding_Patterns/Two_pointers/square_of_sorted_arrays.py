@@ -22,8 +22,23 @@ Output: [4,9,9,49,121]
 
 
 class Solution:
-    def sortedSquares(self, nums: List[int]) -> List[int]:
+    def sortedSquares(self, nums) :
         for i in range(len(nums)):
             nums[i] = nums[i] * nums[i]
         nums.sort()
         return nums
+
+    def sortedSuwares_heap(self, nums):
+        heap = []
+        import heapq
+        for num in nums:
+            heapq.heappush(heap, num**num)
+        result = []
+        while heap:
+            result.append(heapq.heappop(heap))
+        return result
+
+
+obj = Solution()
+print(obj.sortedSquares([-4,-1,0,3,10]))
+print(obj.sortedSuwares_heap([-4,-1,0,3,10]))
