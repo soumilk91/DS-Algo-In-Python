@@ -28,12 +28,14 @@ class Solution:
         nums.sort()
         return nums
 
-    def sortedSuwares_heap(self, nums):
+    def sortedSuqares_heap(self, nums):
         heap = []
         import heapq
         for num in nums:
-            heapq.heappush(heap, num**num)
+            #temp = num * num
+            heapq.heappush(heap, num*num)
         result = []
+        #print(heap)
         while heap:
             result.append(heapq.heappop(heap))
         return result
@@ -41,4 +43,4 @@ class Solution:
 
 obj = Solution()
 print(obj.sortedSquares([-4,-1,0,3,10]))
-print(obj.sortedSuwares_heap([-4,-1,0,3,10]))
+print(obj.sortedSuqares_heap([-4,-1,0,3,10]))

@@ -26,6 +26,8 @@ Input: nums = [3,3], target = 6
 Output: [0,1]
 
 """
+from typing import List
+
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:

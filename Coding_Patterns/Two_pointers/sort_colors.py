@@ -21,6 +21,7 @@ Example 2:
 Input: nums = [2,0,1]
 Output: [0,1,2]
 """
+from typing import *
 
 class Solution:
     # Time: O(N), Space: O(1)

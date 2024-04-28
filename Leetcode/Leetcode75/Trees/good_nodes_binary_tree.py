@@ -26,20 +26,21 @@ Output: 1
 Explanation: Root is considered as good.
 """
 
-
+from typing import *
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         # USE BFS and keep track of maxvalue at every given node
         answer = 0
         if root is None:
             return answer
-        queue = [(root, -inf)]
+        queue = [(root, -float("inf"))]
         while queue:
             temp, maxvalue = queue.pop(0)
 

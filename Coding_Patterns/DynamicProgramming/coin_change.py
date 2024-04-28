@@ -27,6 +27,8 @@ Example 3:
 Input: coins = [1], amount = 0
 Output: 0
 """
+import math
+from typing import List
 
 
 class Solution:

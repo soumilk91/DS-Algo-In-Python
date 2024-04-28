@@ -27,7 +27,7 @@ Explanation: There are 3 equal row and column pairs:
 - (Row 3, Column 2): [2,4,2,2]
 """
 
-
+import collections
 class Solution:
     def equalPairs(self, grid: List[List[int]]) -> int:
         count = 0
