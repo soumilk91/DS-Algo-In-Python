@@ -52,7 +52,7 @@ def create_bst_from_inorder_traversal(list1, start, end):
     if start > end:
         return None
 
-    mid = (start + end) // 2
+    mid = start + (end - start) // 2
     root = list1[mid][1]
 
     # create Left SubTree

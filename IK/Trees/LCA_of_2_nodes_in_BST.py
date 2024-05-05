@@ -52,31 +52,12 @@ def lca(root, a, b):
     # Prepare the parent dict
     parent_dict = build_parent_map(root)
 
-    # Treverse Level Order again to locate the given 2 nodes
-    p, q = None, None
-    queue = [root]
-    while queue:
-        node = queue.pop(0)
-        if node == a:
-            p = node
-        if node == b:
-            q = node
-        if p is not None and q is not None:
-            break
-        if node.left:
-            queue.append(node.left)
-        if node.right:
-            queue.append(node.right)
-
     # Create a dict of all parents (ancistors) of p
-    ancistors = {}
-    while p:
-        ancistors[p] = 1
-        p = parent_dict[p]
+    ancistors = set()
+    while a:
+        ancistors.add(a)
+        a = parent_dict[a]
 
-    # Now while finding all the parents of q, the first node present in the parents of p is the LCA
-    while q:
-        if q in ancistors:
-            return q.value
-        q = parent_dict[q]
-    return -1
+    while b not in ancistors:
+        b = parent_dict[b]
+    return b
