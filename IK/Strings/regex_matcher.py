@@ -4,14 +4,18 @@ Date: 05.16.2024
 
 Question:
 
-Given a text string containing characters only from lowercase alphabetic characters and a pattern string containing characters only from lowercase alphabetic characters and two other special characters '.' and '*'.
+Given a text string containing characters only from lowercase alphabetic characters and a pattern string
+containing characters only from lowercase alphabetic characters and two other special characters '.' and '*'.
 
-Your task is to implement a pattern matching algorithm that returns true if pattern is matched with text otherwise returns false. The matching must be exact, not partial.
+Your task is to implement a pattern matching algorithm that returns true if pattern is matched with text otherwise returns false.
+The matching must be exact, not partial.
 
 Explanation of the special characters:
 
 '.' - Matches a single character from lowercase alphabetic characters.
-'*' - Matches zero or more preceding character. It is guaranteed that '*' will have one preceding character which can be any lowercase alphabetic character or special character '.'. But '*' will never be the preceding character of '*'. (That means "**" will never occur in the pattern string.)
+'*' - Matches zero or more preceding character. It is guaranteed that '*' will have one preceding character which can
+be any lowercase alphabetic character or special character '.'. But '*' will never be the preceding character of '*'.
+(That means "**" will never occur in the pattern string.)
 '.' = "a", "b", "c", ... , "z"
 a* = "a", "aa", "aaa", "aaaa",... or empty string("")
 ab* = "a", "ab", "abb", "abbb", "abbbb", ...

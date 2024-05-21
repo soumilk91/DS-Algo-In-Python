@@ -20,10 +20,11 @@ Output: [2,3,6,7,1,5,4]
 """
 
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 """
 Approach: 
 -> Use a 2 pointer approach 

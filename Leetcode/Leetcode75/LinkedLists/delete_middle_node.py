@@ -29,24 +29,23 @@ Node 0 with value 2 is the only node remaining after removing node 1.
 """
 
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 class Solution(object):
     def deleteMiddle(self, head):
         """
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
+        if not head or head.next is None:
+            return None
         prev = None
         slow = head
         fast = head
-        if head.next is None:
-            return
-        while True:
-            if fast is None or fast.next is None:
-                break
+        while fast and fast.next:
             prev = slow
             slow = slow.next
             fast = fast.next.next

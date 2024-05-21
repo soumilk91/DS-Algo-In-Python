@@ -28,39 +28,23 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-
+from typing import *
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        # get the first number
-        first_number = 0
-        runner = l1
-        power = 0
-        while runner:
-            first_number += runner.val * (10 ** power)
-            power += 1
-            runner = runner.next
-
-        # get the second number
-        second_number = 0
-        runner = l2
-        power = 0
-        while runner:
-            second_number += runner.val * (10 ** power)
-            power += 1
-            runner = runner.next
-
-        final_number = first_number + second_number
-
-        temp = ListNode(0)
-        if final_number == 0:
-            return temp
-        runner = temp
-        while final_number > 0:
-            quotient = final_number % 10
-            runner.next = ListNode(quotient)
-            runner = runner.next
-            final_number = final_number // 10
-        return temp.next
+        dummy = ListNode()
+        carry = 0
+        curr = dummy
+        while l1 or l2 or carry:
+            if l1:
+                carry += l1.val
+                l1 = l1.next
+            if l2:
+                carry += l2.val
+                l2 = l2.next
+            curr.next = ListNode(carry % 10)
+            curr = curr.next
+            carry //= 10
+        return dummy.next
 
 
 

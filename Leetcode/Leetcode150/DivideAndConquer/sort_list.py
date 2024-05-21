@@ -25,43 +25,22 @@ class ListNode:
         self.next = next
 
 
+import heapq
+from typing import *
 class Solution:
-    def get_middle(self, head):
-        if not head or not head.next:
-            return head
-        slow = head
-        fast = head
-        while fast.next and fast.next.next:
-            slow = slow.next
-            fast = fast.next.next
-        return slow
-
-    def sortedMerge(self, left, right):
-        result = None
-        if left is None:
-            return right
-        if right is None:
-            return left
-
-        if left.val <= right.val:
-            result = left
-            result.next = self.sortedMerge(left.next, right)
-        else:
-            result = right
-            result.next = self.sortedMerge(left, right.next)
-        return result
-
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head is None or head.next is None:
-            return head
-        middle = self.get_middle(head)
-        next_to_middle = middle.next
+        runner = head
+        min_heap = []
+        while runner:
+            heapq.heappush(min_heap, (runner.val, runner))
+            runner = runner.next
 
-        middle.next = None
-
-        left = self.sortList(head)
-        right = self.sortList(next_to_middle)
-
-        return_node = self.sortedMerge(left, right)
-
-        return return_node
+        temp_node = ListNode(0)
+        runner = temp_node
+        while min_heap:
+            val, node = heapq.heappop(min_heap)
+            runner.next = node
+            runner = runner.next
+        if runner:
+            runner.next = None
+        return temp_node.next

@@ -42,7 +42,7 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
-
+from collections import deque
 class Solution:
 
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
@@ -58,5 +58,24 @@ class Solution:
 
         return dfs(root, 0)
 
+    def sumNumbersBFS(self, root):
+        result = 0
+        if not root:
+            return result
+
+        queue = deque([(root, 0)])
+        while queue:
+            node, pathSum = queue.popleft()
+            pathSum = pathSum * 10 + node.val
+
+            if node.left is None and node.right is None:
+                result += pathSum
+
+            if node.left:
+                queue.append((node.left, pathSum))
+
+            if node.right:
+                queue.append((node.right, pathSum))
+        return result
 
 

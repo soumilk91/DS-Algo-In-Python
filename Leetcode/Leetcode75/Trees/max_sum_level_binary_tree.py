@@ -41,7 +41,7 @@ class Solution:
         if not root:
             return 0
         max_sum = float('-inf')
-        max_sum_level = 0
+        min_sum_level = 0
         current_level = 0
 
         queue = deque([root])
@@ -58,7 +58,7 @@ class Solution:
                     queue.append(temp.right)
             if current_level_sum > max_sum:
                 max_sum = current_level_sum
-                max_sum_level = current_level
-        return max_sum_level
+                min_sum_level = current_level
+        return min_sum_level
 
 

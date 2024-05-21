@@ -7,7 +7,8 @@ Given a string s that consists of digits ("0".."9") and target, a non-negative i
 find all expressions that can be built from string s that evaluate to the target.
 
 When building expressions, you have to insert one of the following operators between each pair of
-consecutive characters in s: join or * or +. For example, by inserting different operators between the two characters of string "12" we can get either 12 (1 joined with 2 or "12") or 2 ("1*2") or 3 ("1+2").
+consecutive characters in s: join or * or +. For example, by inserting different operators between the two
+characters of string "12" we can get either 12 (1 joined with 2 or "12") or 2 ("1*2") or 3 ("1+2").
 
 Other operators such as - or ÷ are NOT supported.
 

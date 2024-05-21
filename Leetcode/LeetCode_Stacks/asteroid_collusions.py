@@ -30,20 +30,18 @@ Output: [10]
 Explanation: The 2 and -5 collide resulting in -5. The 10 and -5 collide resulting in 10.
 """
 
-
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = []
-        for asteroid in asteroids:
-            if asteroid > 0:
-                stack.append(asteroid)
+        for a in asteroids:
+            while stack and stack[-1] > 0 and a < 0:
+                if stack[-1] + a < 0:
+                    stack.pop()
+                elif stack[-1] + a > 0:
+                    break
+                else:
+                    stack.pop()
+                    break
             else:
-                while stack and stack[-1] > 0 and asteroid < 0:
-                    if stack[-1] + asteroid < 0:
-                        stack.pop()
-                    elif stack[-1] + asteroid > 0:
-                        break
-                    else:
-                        stack.pop()
-                        break
+                stack.append(a)
         return stack
