@@ -16,6 +16,18 @@ Output:
 ]
 """
 
+def generate_all_combinations(arr, target):
+    """
+    Args:
+     arr(list_int32)
+     target(int32)
+    Returns:
+     list_list_int32
+    """
+    # Write your code here.
+    results = []
+    _helper(arr, target, 0, [], results)
+    return results
 
 def _helper(arr, target, index, slate, results):
     # Base Case
@@ -35,17 +47,3 @@ def _helper(arr, target, index, slate, results):
 
     # Exculde
     _helper(arr, target, index + 1, slate, results)
-
-
-def generate_all_combinations(arr, target):
-    """
-    Args:
-     arr(list_int32)
-     target(int32)
-    Returns:
-     list_list_int32
-    """
-    # Write your code here.
-    results = []
-    _helper(arr, target, 0, [], results)
-    return results
