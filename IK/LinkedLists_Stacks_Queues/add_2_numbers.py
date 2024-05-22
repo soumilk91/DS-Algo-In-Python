@@ -33,6 +33,32 @@ class ListNode:
         self.val = val
         self.next = next
 
+# Another Approach
+# This is Faster
+def add_two_numbers_carry_approach(l_a, l_b):
+    """
+    Args:
+     l_a(LinkedListNode_int32)
+     l_b(LinkedListNode_int32)
+    Returns:
+     LinkedListNode_int32
+    """
+    # Write your code here.
+    # Get the First Number  Both the Numbers
+    dummy = cur =ListNode(0)
+    carry = 0
+    while l_a or l_b or carry:
+        if l_a:
+            carry += l_a.value
+            l_a = l_a.next
+        if l_b:
+            carry += l_b.value
+            l_b = l_b.next
+        cur.next = ListNode(carry%10)
+        cur = cur.next
+        carry //=10
+    return dummy.next
+
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         # get the first number
@@ -65,30 +91,3 @@ class Solution:
             runner = runner.next
             final_number = final_number // 10
         return temp.next
-
-
-# Another Approach
-# This is Faster 
-def add_two_numbers_carry_approach(l_a, l_b):
-    """
-    Args:
-     l_a(LinkedListNode_int32)
-     l_b(LinkedListNode_int32)
-    Returns:
-     LinkedListNode_int32
-    """
-    # Write your code here.
-    # Get the First Number  Both the Numbers
-    dummy = cur =LinkedListNode(0)
-    carry = 0
-    while l_a or l_b or carry:
-        if l_a:
-            carry += l_a.value
-            l_a = l_a.next
-        if l_b:
-            carry += l_b.value
-            l_b = l_b.next
-        cur.next = LinkedListNode(carry%10)
-        cur = cur.next
-        carry //=10
-    return dummy.next
