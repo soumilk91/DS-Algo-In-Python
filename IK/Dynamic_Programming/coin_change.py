@@ -29,6 +29,7 @@ Output: 0
 """
 
 import math
+from typing import *
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         table = [math.inf] * (amount + 1)
