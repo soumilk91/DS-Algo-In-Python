@@ -41,7 +41,7 @@ def _helper(root, return_number, compare_is_univalue):
         return_number[0] += 1
         return
 
-    # Post Poder Traversal
+    # Post Order Traversal
     _helper(root.left, return_number, compare_is_univalue)
     _helper(root.right, return_number, compare_is_univalue)
 

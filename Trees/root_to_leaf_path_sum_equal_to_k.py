@@ -6,14 +6,13 @@ Question: Given a binary tree and an integer k, check whether the tree has a roo
 """
 
 
-"""
-For your reference:
+
+#For your reference:
 class BinaryTreeNode:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
-"""
 def path_sum(root, k):
     """
     Args:
@@ -49,3 +48,22 @@ def path_sum(root, k):
             queue.append(node.right)
     return False
 
+
+####################### Recursive Solution ######################
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+from typing import *
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+        targetSum -= root.val
+        if not root.left and not root.right:
+            return targetSum == 0
+
+        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)

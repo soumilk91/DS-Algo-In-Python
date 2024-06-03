@@ -26,6 +26,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+from typing import *
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         # Iterative Solution

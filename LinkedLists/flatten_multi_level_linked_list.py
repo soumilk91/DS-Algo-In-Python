@@ -39,7 +39,6 @@ Output: []
 Explanation: There could be empty list in the input.
 """
 
-"""
 # Definition for a Node.
 class Node:
     def __init__(self, val, prev, next, child):
@@ -47,9 +46,8 @@ class Node:
         self.prev = prev
         self.next = next
         self.child = child
-"""
 
-
+from typing import *
 class Solution:
     def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
         current = head

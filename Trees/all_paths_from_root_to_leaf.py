@@ -56,3 +56,33 @@ def _helper(root, slate, return_list):
         _helper(root.right, slate, return_list)
 
     slate.pop()
+
+
+###################   Iterative Solution ######################
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+from collections import deque
+from typing import *
+class Solution:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        if not root:
+            return []
+        result = []
+
+        queue = deque([(root, "")])
+        while queue:
+            node, currentPath = queue.popleft()
+            currentPath += str(node.val)
+            if node.left is None and node.right is None:
+                result.append(currentPath)
+            if node.left:
+                queue.append((node.left, currentPath + "->"))
+            if node.right:
+                queue.append((node.right, currentPath  + "->"))
+        return result
