@@ -40,18 +40,26 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
-
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        # Lets Also Do this Using DFS
-        def dfs(node, path_sum):
-            if node is None:
-                return 0
-            path_sum = path_sum * 10 + node.val
+        result = 0
+        if not root:
+            return result
+
+        from collections import deque
+        queue = deque([(root, 0)])
+        while queue:
+            node, pathSum = queue.popleft()
+            pathSum = pathSum * 10 + node.val
+
             if node.left is None and node.right is None:
-                return path_sum
+                result += pathSum
 
-            return dfs(node.left, path_sum) + dfs(node.right, path_sum)
+            if node.left:
+                queue.append((node.left, pathSum))
 
-        return dfs(root, 0)
+            if node.right:
+                queue.append((node.right, pathSum))
+        return result
 

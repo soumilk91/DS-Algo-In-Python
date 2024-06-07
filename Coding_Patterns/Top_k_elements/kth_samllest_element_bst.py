@@ -23,6 +23,20 @@ class TreeNode:
         self.left = left
         self.right = right
 
+# Better Solution (Iterative Inorder Traversal Using Stacks)
+class Solution1:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        stack = []
+        while True:
+            while root:
+                stack.append(root)
+                root = root.left
+            k -= 1
+            root = stack.pop()
+            if k == 0:
+                return root.val
+            root = root.right
+
 class Solution:
     def inorder_traversal(self, root, k, result):
         if root is None:

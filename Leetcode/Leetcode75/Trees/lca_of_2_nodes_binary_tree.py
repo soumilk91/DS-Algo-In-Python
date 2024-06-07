@@ -36,36 +36,25 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if not root:
+            return None
 
-        # Stack for Tree Treversal
-        stack = [root]
+        def addParent(node, parent):
+            if node:
+                node.parent = parent
+                addParent(node.left, node)
+                addParent(node.right, node)
 
-        # Dict for sotring the Parents
-        parent = {root: None}
-
-        # Iterate while both p and q are not found
-        while stack:
-            node = stack.pop()
-            if p in parent and q in parent:
-                break
-            if node.left:
-                parent[node.left] = node
-                stack.append(node.left)
-            if node.right:
-                parent[node.right] = node
-                stack.append(node.right)
-
+        addParent(root, None)
         ancistors = set()
-
-        # Process all ancistors for p
         while p:
             ancistors.add(p)
-            p = parent[p]
+            p = p.parent
 
-        # First Ansistor of q that appears in q is the LCA
         while q not in ancistors:
-            q = parent[q]
+            q = q.parent
         return q
 
