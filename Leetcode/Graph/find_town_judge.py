@@ -43,3 +43,25 @@ class Solution:
             if indegree[i] == n -1 and outdegree[i] == 0:
                 return i
         return -1
+
+
+class Solution1:
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        # Create the Graph
+        graph = defaultdict(set)
+        for relation in trust:
+            graph[relation[0]].add(relation[1])
+        # print(graph)
+        # Find the Person not Present in the Relations Graph
+        person_not_present = None
+        for i in range(1, n + 1):
+            if i not in graph:
+                if person_not_present != None:
+                    # There can only be one Person Who does not Trust Anyone
+                    return -1
+                person_not_present = i
+        # Check Relations for each Person, Each Person should Trust our 'person_not_present'
+        for person, relations in graph.items():
+            if person_not_present not in relations:
+                return -1
+        return person_not_present
