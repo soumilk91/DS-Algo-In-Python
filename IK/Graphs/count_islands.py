@@ -1,58 +1,55 @@
 """
-Author: Soumil Ramesh Kulkarni
-Date: 03.04.2024
-
 Question:
-Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
 
-An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
-You may assume all four edges of the grid are all surrounded by water.
+Given a two-dimensional matrix of 0s and 1s, find the number of islands.
 
+An island is a group of connected 1s or a standalone 1. A cell in the matrix can be connected to up to 8 neighbors:
+2 vertical, 2 horizontal and 4 diagonal.
 
-
-Example 1:
-
-Input: grid = [
-  ["1","1","1","1","0"],
-  ["1","1","0","1","0"],
-  ["1","1","0","0","0"],
-  ["0","0","0","0","0"]
+Example
+{
+"matrix": [
+[1, 1, 0, 0, 0],
+[0, 1, 0, 0, 1],
+[1, 0, 0, 1, 1],
+[0, 0, 0, 0, 0],
+[1, 0, 1, 0, 1]
 ]
-Output: 1
-Example 2:
+}
+Output:
 
-Input: grid = [
-  ["1","1","0","0","0"],
-  ["1","1","0","0","0"],
-  ["0","0","1","0","0"],
-  ["0","0","0","1","1"]
-]
-Output: 3
+5
+
 """
 
+from collections import deque
+def count_islands(matrix):
+    """
+    Args:
+     matrix(list_list_int32)
+    Returns:
+     int32
+    """
+    # Write your code here.
+    if not matrix:
+        return 0
 
-class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
-        if not grid:
-            return 0
-        islands = 0
-        for row in range(len(grid)):
-            for column in range(len(grid[0])):
-                if grid[row][column] == '1':
-                    islands += 1
-                    self.bfs(grid, row, column)
-        return islands
+    islands = 0
+    for row in range(len(matrix)):
+        for col in range(len(matrix[0])):
+            if matrix[row][col] == 1:
+                islands += 1
+                bfs(matrix, row, col)
+    return islands
 
-    def bfs(self, matrix, row, column):
-        queue = [(row, column)]
-        while queue:
-            temp = queue.pop(0)
-            i = temp[0]
-            j = temp[1]
-            if 0 <= i < len(matrix) and 0 <= j < len(matrix[0]) and matrix[i][j] == '1':
-                matrix[i][j] = '2'
-                queue.append((i - 1, j))
-                queue.append((i + 1, j))
-                queue.append((i, j - 1))
-                queue.append((i, j + 1))
 
+def bfs(matrix, row, col):
+    directions = [(-1, 0), (1, 0), (0, 1), (0, -1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
+    # Use BFS for Traversal
+    queue = deque([(row, col)])
+    while queue:
+        row, col = queue.popleft()
+        if 0 <= row < len(matrix) and 0 <= col < len(matrix[0]) and matrix[row][col] == 1:
+            matrix[row][col] = 2
+            for direction in directions:
+                queue.append((row + direction[0], col + direction[1]))

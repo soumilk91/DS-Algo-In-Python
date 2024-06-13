@@ -27,51 +27,31 @@ Output:
 0
 """
 
-
+from collections import deque
 def can_be_divided(num_of_people, dislike1, dislike2):
-    """
-    Args:
-     num_of_people(int32)
-     dislike1(list_int32)
-     dislike2(list_int32)
-    Returns:
-     bool
-    """
-    # Write your code here.
-
-    if num_of_people <= 1:
-        return True
-
-        # Create a graph
-
-    # This is going to be a directed graph
-    graph = {}
-    for i in range(num_of_people):
-        graph[i] = []
+    group = [0] * num_of_people
+    adj_list = [[] for i in range(num_of_people)]
 
     for i in range(len(dislike1)):
-        graph[dislike1[i]].append(dislike2[i])
+        adj_list[dislike1[i]].append(dislike2[i])
+        adj_list[dislike2[i]].append(dislike1[i])
 
-    color = [-1] * num_of_people
+    def bfs(root):
+        q = deque()
+        group[root] = 1
+        q.append(root)
+
+        while q:
+            person = q.popleft()
+            person_group = group[person]
+            for disliked_person in adj_list[person]:
+                if group[disliked_person] == person_group: return False
+                if group[disliked_person] == 0:  # haven't visited
+                    group[disliked_person] = person_group + 1
+                    q.append(disliked_person)
+        return True
 
     for i in range(num_of_people):
-        if color[i] == -1:
-            if not bfs(i, graph, color):
-                return False
-    return True
-
-
-def bfs(node, graph, color):
-    queue = [node]
-    color[node] = 0
-
-    while queue:
-        temp_node = queue.pop(0)
-        for i in graph[temp_node]:
-            if color[temp_node] == color[i]:
-                return False
-
-            if color[i] == -1:
-                color[i] = 1 - color[temp_node]
-                queue.append(i)
+        if group[i] == 0:
+            if not bfs(i): return False
     return True
