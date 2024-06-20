@@ -9,8 +9,6 @@ class BinaryTreeNode:
         self.left = None
         self.right = None
 
-
-
 def level_order_traversal(root):
     """
     Args:

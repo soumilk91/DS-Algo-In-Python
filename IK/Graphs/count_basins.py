@@ -3,9 +3,13 @@ Author: Soumil Ramesh Kulkanri
 Date: 05.11.2024
 
 Question:
-Given the altitudes of the regions on a surface, determine the basins where water would collect if poured onto that surface.
+Given the altitudes of the regions on a surface, determine the basins where water would collect if
+poured onto that surface.
 
-Region whose four neighbors (right, left, up and down) are all higher in altitude is called a sink. All the water would collect in sinks. If a region is not a sink, it is guaranteed to have a single lowest neighbor where water will drain to. All regions that drain to a particular sink–directly or indirectly–collectively form one basin. Partition the surface into the basins and return their sizes in the non-decreasing order.
+Region whose four neighbors (right, left, up and down) are all higher in altitude is called a sink.
+All the water would collect in sinks. If a region is not a sink, it is guaranteed to have a single lowest
+neighbor where water will drain to. All regions that drain to a particular sink–directly or indirectly–collectively
+form one basin. Partition the surface into the basins and return their sizes in the non-decreasing order.
 
 Example One
 {

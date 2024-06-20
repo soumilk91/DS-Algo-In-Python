@@ -32,9 +32,11 @@ def find_minimum(arr):
 
     low = 0
     high = len(arr) - 1
+    # Only 1 Element in the Given Array
     if len(arr) == 1:
         return arr[0]
 
+    # Array does not have any pivot ... Already Sorted
     if arr[low] < arr[high]:
         return arr[low]
 
