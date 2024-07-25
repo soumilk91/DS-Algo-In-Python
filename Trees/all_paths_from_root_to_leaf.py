@@ -84,5 +84,5 @@ class Solution:
             if node.left:
                 queue.append((node.left, currentPath + "->"))
             if node.right:
-                queue.append((node.right, currentPath  + "->"))
+                queue.append((node.right, currentPath + "->"))
         return result
