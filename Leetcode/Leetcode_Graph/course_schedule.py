@@ -24,8 +24,6 @@ To take course 1 you should have finished course 0, and to take course 0 you sho
 """
 
 from typing import *
-
-
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         # Create the Graph First
