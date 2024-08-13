@@ -55,3 +55,7 @@ def convert_string_sinusoidally(s):
     for i in range(2, n, 4):
         row3[i] = s[i]
     return [''.join(row3), ''.join(row2), ''.join(row1)]
+
+temp = convert_string_sinusoidally('InterviewKickstart')
+for i in temp:
+    print(i)

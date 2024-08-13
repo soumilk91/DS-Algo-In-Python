@@ -87,24 +87,17 @@ class BinaryTreeNode:
 """
 
 
-def is_bst_helper(root, min_value, max_value):
-    # base case
-    if root is None:
-        return True
+class SolutionRecursive:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
+        return self.helper(root, -float('inf'), float('inf'))
 
-    if root.value < min_value or root.value > max_value:
-        return False
+    def helper(self, node, minValue, maxValue):
+        if not node:
+            return True
 
-    return is_bst_helper(root.left, min_value, root.value) and is_bst_helper(root.right, root.value, max_value)
+        if node.val <= minValue or node.val >= maxValue:
+            return False
 
-
-def is_bst_recursive(root):
-    """
-    Args:
-     root(BinaryTreeNode_int32)
-    Returns:
-     bool
-    """
-    min_value = float("-inf")
-    max_value = float("inf")
-    return is_bst_helper(root, min_value, max_value)
+        return self.helper(node.left, minValue, node.val) and self.helper(node.right, node.val, maxValue)

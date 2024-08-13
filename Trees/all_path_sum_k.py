@@ -14,15 +14,6 @@ class BinaryTreeNode:
         self.right = None
 """
 
-"""
-For your reference:
-class BinaryTreeNode:
-    def __init__(self, value):
-        self.value = value
-        self.left = None
-        self.right = None
-"""
-
 
 def all_paths_sum_k(root, k):
     """

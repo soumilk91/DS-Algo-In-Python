@@ -23,41 +23,19 @@ class BinaryTreeNode:
 """
 
 
-def build_parent_map(root):
-    parent_dict = {}
-    parent_dict[root] = None
-    queue = [root]
-    while queue:
-        node = queue.pop(0)
-        if node.left:
-            parent_dict[node.left] = node
-            queue.append(node.left)
-        if node.right:
-            parent_dict[node.right] = node
-            queue.append(node.right)
-    return parent_dict
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        p_val = p.val
+        q_val = q.val
 
+        node = root
 
-def lca(root, a, b):
-    """
-    Args:
-     root(BinaryTreeNode_int32)
-     a(BinaryTreeNode_int32)
-     b(BinaryTreeNode_int32)
-    Returns:
-     int32
-    """
-    # Write your code here.
+        while node:
+            parent_val = node.val
 
-    # Prepare the parent dict
-    parent_dict = build_parent_map(root)
-
-    # Create a dict of all parents (ancistors) of p
-    ancistors = set()
-    while a:
-        ancistors.add(a)
-        a = parent_dict[a]
-
-    while b not in ancistors:
-        b = parent_dict[b]
-    return b
+            if p_val > parent_val and q_val > parent_val:
+                node = node.right
+            elif p_val < parent_val and q_val < parent_val:
+                node = node.left
+            else:
+                return node

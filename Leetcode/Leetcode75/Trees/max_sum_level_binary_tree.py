@@ -35,30 +35,29 @@ class TreeNode:
 from collections import deque
 
 
+from typing import *
+from collections import deque
+
 class Solution:
     def maxLevelSum(self, root: Optional[TreeNode]) -> int:
-        # Use BFS
+        resultSum = -float('inf')
+        resultLevel = 0
         if not root:
             return 0
-        max_sum = float('-inf')
-        min_sum_level = 0
-        current_level = 0
-
-        queue = deque([root])
+        queue = deque([])
+        queue.append(root)
+        currLevel = 0
         while queue:
-            current_level += 1
-            current_level_sum = 0
+            currLevelSum = 0
+            currLevel += 1
             for i in range(len(queue)):
-                temp = queue.popleft()
-                current_level_sum += temp.val
-
-                if temp.left:
-                    queue.append(temp.left)
-                if temp.right:
-                    queue.append(temp.right)
-            if current_level_sum > max_sum:
-                max_sum = current_level_sum
-                min_sum_level = current_level
-        return min_sum_level
-
-
+                node = queue.popleft()
+                currLevelSum += node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            if currLevelSum > resultSum:
+                resultSum = currLevelSum
+                resultLevel = currLevel
+        return resultLevel

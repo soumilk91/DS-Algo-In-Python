@@ -19,28 +19,29 @@ Output: ["()"]
 
 
 class Solution:
-    def generateParenthesis_helper(self, left, right, slate, result):
-        # Backtraking Case
-        if right < left or left < 0 or right < 0:
-            return
+    def generateParenthesis(self, n: int) -> List[str]:
+        if n < 1:
+            return []
+        result = []
+        self.helper(n, n, [], result)
+        return result
 
+    def helper(self, left, right, slate, result):
         # Base Case
         if left == right == 0:
             result.append("".join(slate[:]))
             return
+        # Pruning
+        if right < left or left < 0 or right < 0:
+            return
 
-        # Recursive Case
+        # recursive Case
         # Left
         slate.append("(")
-        self.generateParenthesis_helper(left - 1, right, slate, result)
+        self.helper(left - 1, right, slate, result)
         slate.pop()
 
         # Right
         slate.append(")")
-        self.generateParenthesis_helper(left, right - 1, slate, result)
+        self.helper(left, right - 1, slate, result)
         slate.pop()
-
-    def generateParenthesis(self, n: int) -> List[str]:
-        result = []
-        self.generateParenthesis_helper(n, n, [], result)
-        return result

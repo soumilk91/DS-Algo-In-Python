@@ -35,33 +35,17 @@ class ListNode:
 
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        # get the first number
-        first_number = 0
-        runner = l1
-        power = 0
-        while runner:
-            first_number += runner.val * (10 ** power)
-            power += 1
+        dummy = ListNode(-1)
+        runner = dummy
+        carry = 0
+        while l1 or l2 or carry:
+            if l1:
+                carry += l1.val
+                l1 = l1.next
+            if l2:
+                carry += l2.val
+                l2 = l2.next
+            runner.next = ListNode(carry % 10)
+            carry = carry // 10
             runner = runner.next
-
-        # get the second number
-        second_number = 0
-        runner = l2
-        power = 0
-        while runner:
-            second_number += runner.val * (10 ** power)
-            power += 1
-            runner = runner.next
-
-        final_number = first_number + second_number
-
-        temp = ListNode(0)
-        if final_number == 0:
-            return temp
-        runner = temp
-        while final_number > 0:
-            remainder = final_number % 10
-            runner.next = ListNode(remainder)
-            runner = runner.next
-            final_number = final_number // 10
-        return temp.next
+        return dummy.next

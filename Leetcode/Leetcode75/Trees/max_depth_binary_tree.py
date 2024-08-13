@@ -16,7 +16,6 @@ Output: 2
 
 """
 
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -24,11 +23,33 @@ class TreeNode:
         self.left = left
         self.right = right
 
+from collections import deque
+from typing import *
+
+
+class Solution1:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        queue = deque([])
+        maxDepthfound = 0
+        queue.append((root, 1))
+        while queue:
+            node, currDepth = queue.popleft()
+            maxDepthfound = max(maxDepthfound, currDepth)
+            if node.left:
+                queue.append((node.left, currDepth + 1))
+            if node.right:
+                queue.append((node.right, currDepth + 1))
+        return maxDepthfound
+
+
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        # Base Case
-        if root is None:
+        if not root:
             return 0
         return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+
+
 
 

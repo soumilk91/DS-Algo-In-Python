@@ -11,28 +11,21 @@ class BinaryTreeNode:
         self.left = None
         self.right = None
 
-def binary_tree_diameter(root):
-    """
-    Args:
-     root(BinaryTreeNode_int32)
-    Returns:
-     int32
-    """
-    # Write your code here.
-    if root is None:
-        return 0
-    result = [0]
-    _binary_tree_helper(root, result)
-    return result[0]
+from typing import *
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[BinaryTreeNode]) -> int:
+        diameter = 0
 
+        def longestPath(node):
+            if not node:
+                return 0
+            nonlocal diameter
+            leftPath = longestPath(node.left)
+            rightPath = longestPath(node.right)
 
-def _binary_tree_helper(root, result):
-    if root is None:
-        return 0
+            diameter = max(diameter, leftPath + rightPath)
 
-    left_subtree_height = _binary_tree_helper(root.left, result)
-    right_subtree_height = _binary_tree_helper(root.right, result)
+            return 1 + max(leftPath, rightPath)
 
-    result[0] = max(result[0], left_subtree_height + right_subtree_height)
-
-    return 1 + max(left_subtree_height, right_subtree_height)
+        longestPath(root)
+        return diameter

@@ -33,31 +33,30 @@ Output: []
 
 
 class Solution:
-    def helper(self, numbers, target, index, slate, results):
-        # Base Case
-        if target == 0 and slate[:] not in results:
-            results.append(slate[:])
-            return
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result = []
+        self.helper(candidates, target, 0, [], result)
+        return result
 
-        # Pruning Case
-        if target < 0 or index == len(numbers):
+    def helper(self, nums, target, index, slate, result):
+        # Base Case
+        if target == 0 and slate[:] not in result:
+            result.append(slate[:])
+            return
+        # Pruning
+        if target < 0 or index == len(nums):
             return
 
         # Recursive Cases
-        # Reuse the same Index
-        slate.append(numbers[index])
-        self.helper(numbers, target - numbers[index], index, slate, results)
+        # Reuse the same number
+        slate.append(nums[index])
+        self.helper(nums, target - nums[index], index, slate, result)
         slate.pop()
 
         # Include
-        slate.append(numbers[index])
-        self.helper(numbers, target - numbers[index], index + 1, slate, results)
+        slate.append(nums[index])
+        self.helper(nums, target - nums[index], index + 1, slate, result)
         slate.pop()
 
         # Exclude
-        self.helper(numbers, target, index + 1, slate, results)
-
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        results = []
-        self.helper(candidates, target, 0, [], results)
-        return results
+        self.helper(nums, target, index + 1, slate, result)

@@ -22,7 +22,7 @@ Input: nums = [-1,1,0,-3,3]
 Output: [0,0,9,0,0]
 """
 
-
+from typing import *
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         result = [1] * len(nums)
@@ -33,7 +33,7 @@ class Solution:
             result[i] = prefix
             prefix *= nums[i]
 
-        # print(result)
+        print(result)
 
         # Now use a while loop backwards and for
         # each index calculate the postfix
@@ -45,3 +45,5 @@ class Solution:
             temp -= 1
 
         return result
+client = Solution()
+print(client.productExceptSelf([1,2,3,4]))

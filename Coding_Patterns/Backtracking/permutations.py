@@ -21,27 +21,29 @@ Input: nums = [1]
 Output: [[1]]
 """
 
-
+from typing import *
 class Solution:
-    def permute_helper(self, nums, start_index, slate, result):
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        if not nums:
+            return nums
+        result = []
+        self.helper(nums, 0, [], result)
+        return result
+
+    def helper(self, nums, index, slate, result):
         # Base Case
-        if start_index == len(nums):
+        if index == len(nums):
             result.append(slate[:])
             return
 
         # Recursive Case
-        for temp in range(start_index, len(nums)):
-            nums[temp], nums[start_index] = nums[start_index], nums[temp]
-            slate.append(nums[start_index])
-
-            self.permute_helper(nums, start_index + 1, slate, result)
-
+        # Swap
+        for temp in range(index, len(nums)):
+            nums[temp], nums[index] = nums[index], nums[temp]
+            slate.append(nums[index])
+            self.helper(nums, index + 1, slate, result)
             slate.pop()
+            nums[temp], nums[index] = nums[index], nums[temp]
 
-            nums[temp], nums[start_index] = nums[start_index], nums[temp]
-
-    def permute(self, nums: List[int]) -> List[List[int]]:
-        result = []
-        index = 0
-        self.permute_helper(nums, index, [], result)
-        return result
+client = Solution()
+print(client.permute([1,2,3]))

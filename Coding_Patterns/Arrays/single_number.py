@@ -34,3 +34,7 @@ class Solution:
         for key, value in d.items():
             if value == 1:
                 return key
+
+class Solution1:
+    def singleNumber(self, nums: List[int]) -> int:
+        return 2 * sum(set(nums)) - sum(nums)
