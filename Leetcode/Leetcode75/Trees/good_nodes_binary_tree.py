@@ -34,22 +34,21 @@ class TreeNode:
         self.left = left
         self.right = right
 
+from collections import deque
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        # USE BFS and keep track of maxvalue at every given node
-        answer = 0
-        if root is None:
-            return answer
-        queue = [(root, -float("inf"))]
+        if not root:
+            return 0
+        goodNodes = 0
+        queue = deque([])
+        queue.append([root, -float('inf')])
         while queue:
-            temp, maxvalue = queue.pop(0)
-
-            if temp.val >= maxvalue:
-                answer += 1
-
-            if temp.left:
-                queue.append((temp.left, max(maxvalue, temp.val)))
-
-            if temp.right:
-                queue.append((temp.right, max(maxvalue, temp.val)))
-        return answer
+            node, pathMax = queue.popleft()
+            if node.val >= pathMax:
+                pathMax = node.val
+                goodNodes += 1
+            if node.left:
+                queue.append([node.left, pathMax])
+            if node.right:
+                queue.append([node.right, pathMax])
+        return goodNodes

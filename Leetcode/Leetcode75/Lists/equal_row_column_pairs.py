@@ -27,18 +27,19 @@ Explanation: There are 3 equal row and column pairs:
 - (Row 3, Column 2): [2,4,2,2]
 """
 
-import collections
+from collections import Counter
+from typing import *
 class Solution:
     def equalPairs(self, grid: List[List[int]]) -> int:
-        count = 0
+        resultCount = 0
         n = len(grid)
 
-        # Keep track of the frequency of each row.
-        row_counter = collections.Counter(tuple(row) for row in grid)
+        # Keep Track of all the Rows in tuples
+        rowCounter = Counter(tuple(row) for row in grid)
+        print(rowCounter)
 
-        # Add up the frequency of each column in map.
+        # Add the freq of each column in map
         for c in range(n):
             col = [grid[i][c] for i in range(n)]
-            count += row_counter[tuple(col)]
-
-        return count
+            resultCount += rowCounter[tuple(col)]
+        return resultCount

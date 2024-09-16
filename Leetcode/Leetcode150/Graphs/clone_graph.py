@@ -54,6 +54,7 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 
+from typing import Optional
 from collections import deque
 class Solution:
     def cloneGraph(self, node):
@@ -69,5 +70,5 @@ class Solution:
                 if neighbor not in visited:
                     visited[neighbor] = Node(neighbor.val, [])
                     queue.append(neighbor)
-                visited[neighbor].neighbors.append(visited[neighbor])
+                visited[currNode].neighbors.append(visited[neighbor])
         return visited[node]

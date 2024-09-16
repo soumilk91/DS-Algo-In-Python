@@ -31,23 +31,20 @@ Output: false
 Explanation: We can not enter room number 2 since the only key that unlocks it is in that room.
 """
 
-
+from typing import *
+from collections import deque
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        # All Rooms are closed
-        visited = [False] * len(rooms)
-        # Except the First Room
-        visited[0] = True
-        queue = [0]
+        visited = set()
+        visited.add(0)
+        queue = deque([])
+        queue.append(0)
 
         while queue:
-            room = queue.pop(0)
-            keys = rooms[room]
+            currRoom = queue.popleft()
+            keys = rooms[currRoom]
             for key in keys:
-                if not visited[key]:
-                    visited[key] = True
+                if key not in visited:
+                    visited.add(key)
                     queue.append(key)
-        for room in visited:
-            if not room:
-                return False
-        return True
+        return len(visited) == len(rooms)

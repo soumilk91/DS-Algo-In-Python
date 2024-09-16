@@ -30,20 +30,16 @@ Output: false
 """
 
 
-class Solution(object):
-    def isHappy(self, n):
-        """
-        :type n: int
-        :rtype: bool
-        """
-        ret = []
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        seenNumbers = set()
         while True:
-            result = 0
+            currResult = 0
             for i in (str(n)):
-                result += int(i) ** 2
-            if result == 1:
+                currResult += int(i) ** 2
+            if currResult == 1:
                 return True
-            if result in ret:
+            if currResult in seenNumbers:
                 return False
-            ret.append(result)
-            n = result
+            seenNumbers.add(currResult)
+            n = currResult

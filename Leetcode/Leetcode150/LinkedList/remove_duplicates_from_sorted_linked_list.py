@@ -34,18 +34,19 @@ class ListNode:
         self.val = val
         self.next = next
 
+from typing import *
 class Solution:
-    def deleteDuplicates(self, head: ListNode) -> ListNode:
-        dummy = ListNode(0)
-        dummy.next = head
-        prev = dummy
-        while head and head.next:
-            if head.val == head.next.val:
-                while head and head.next and head.val == head.next.val:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(-1, head)
+        runner = dummy
+        while head:
+            if head.next and head.val == head.next.val:
+                while head.next and head.val == head.next.val:
                     head = head.next
-                head = head.next
-                prev.next = head
+
+                runner.next = head.next
             else:
-                prev = prev.next
-                head = head.next
+                runner = runner.next
+
+            head = head.next
         return dummy.next

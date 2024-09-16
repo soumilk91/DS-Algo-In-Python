@@ -15,23 +15,21 @@ class TreeNode:
         self.left = left
         self.right = right
 
+from typing import *
 class Solution:
-    def inorder_traversal(self, root, result_list):
-        if root is None:
+    def inorder(self, root, sortedList, result):
+        if not root:
             return
-        self.inorder_traversal(root.left, result_list)
-        result_list.append(root.val)
-        self.inorder_traversal(root.right, result_list)
+
+        self.inorder(root.left, sortedList, result)
+        sortedList.append(root.val)
+        if len(sortedList) > 1:
+            result[0] = min(result[0], (sortedList[-1] - sortedList[-2]))
+            print(result[0])
+        self.inorder(root.right, sortedList, result)
 
     def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
-        sorted_list = []
-        self.inorder_traversal(root, sorted_list)
-        min_diff = float('inf')
-
-        runner = 0
-        while runner < len(sorted_list) - 1:
-            temp = sorted_list[runner + 1] - sorted_list[runner]
-            if temp < min_diff:
-                min_diff = temp
-            runner += 1
-        return min_diff
+        sortedList = []
+        result = [float("inf")]
+        self.inorder(root, sortedList, result)
+        return result[0]

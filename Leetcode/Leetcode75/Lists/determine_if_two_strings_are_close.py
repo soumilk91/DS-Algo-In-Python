@@ -37,20 +37,15 @@ Apply Operation 2: "caabbb" -> "baaccc"
 Apply Operation 2: "baaccc" -> "abbccc"
 """
 
-
+from collections import Counter
 class Solution:
     def closeStrings(self, word1: str, word2: str) -> bool:
-        def alpha(word):
-            freq = [0] * 26
-            S = [False] * 26
-            for c in word:
-                i = ord(c) - ord('a')
-                S[i] = True
-                freq[i] += 1
-            return (S, freq)
+        frequency_word1 = Counter(word1)
+        frequency_word2 = Counter(word2)
 
-        S1, freq1 = alpha(word1)
-        S2, freq2 = alpha(word2)
-        if S1 != S2:
-            return False
-        return sorted(freq1) == sorted(freq2)
+        sorted_values_word1 = sorted(frequency_word1.values())
+        sorted_values_word2 = sorted(frequency_word2.values())
+
+        keys_match = frequency_word1.keys() == frequency_word2.keys()
+
+        return sorted_values_word1 == sorted_values_word2 and keys_match

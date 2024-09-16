@@ -28,36 +28,37 @@ Input: grid = [[0,2]]
 Output: 0
 Explanation: Since there are already no fresh oranges at minute 0, the answer is just 0.
 """
+from collections import deque
+from typing import *
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        ROWS, COLS = len(grid), len(grid[0])
+        ROWS = len(grid)
+        COLS = len(grid[0])
+        time = 0
+        fresh = 0
+        rotten = deque([])
 
-        # run the rotting process, by marking the rotten oranges with the timestamp
-        directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+        # Only put rotten oranges in the queue while counting the fresh ones
+        for row in range(ROWS):
+            for col in range(COLS):
+                if grid[row][col] == 1:
+                    fresh += 1
+                if grid[row][col] == 2:
+                    rotten.append((row, col))
 
-        def runRottingProcess(timestamp):
-            # flag to indicate if the rotting process should be continued
-            to_be_continued = False
-            for row in range(ROWS):
-                for col in range(COLS):
-                    if grid[row][col] == timestamp:
-                        # current contaminated cell
-                        for d in directions:
-                            n_row, n_col = row + d[0], col + d[1]
-                            if ROWS > n_row >= 0 and COLS > n_col >= 0:
-                                if grid[n_row][n_col] == 1:
-                                    # this fresh orange would be contaminated next
-                                    grid[n_row][n_col] = timestamp + 1
-                                    to_be_continued = True
-            return to_be_continued
+        directions = [(-1, 0), (1, 0), (0, 1), (0, -1)]
 
-        timestamp = 2
-        while runRottingProcess(timestamp):
-            timestamp += 1
-        # end of process, to check if there are still fresh oranges left
-        for row in grid:
-            for cell in row:
-                if cell == 1:  # still got a fresh orange left
-                    return -1
-        # return elapsed minutes if no fresh orange left
-        return timestamp - 2
+        while fresh > 0 and rotten:
+            for i in range(len(rotten)):
+                row, col = rotten.popleft()
+                for direction in directions:
+                    newRow, newCol = row + direction[0], col + direction[1]
+                    if 0 <= newRow < ROWS and 0 <= newCol < COLS and grid[newRow][newCol] == 1:
+                        fresh -= 1
+                        grid[newRow][newCol] = 2
+                        rotten.append((newRow, newCol))
+            time += 1
+
+        if fresh != 0:
+            return -1
+        return time
