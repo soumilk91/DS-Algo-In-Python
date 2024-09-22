@@ -32,18 +32,18 @@ class Solution:
             return 0
 
         n = len(isConnected)
-        visited = [False] * n
-
-        def dfs(node):
-            for j in range(n):
-                if isConnected[node][j] == 1 and visited[j] == False:
-                    visited[j] = True
-                    dfs(j)
-
+        visited = set()
         count = 0
-        for i in range(n):
-            if visited[i] == False:
+
+        for i in range(len(isConnected)):
+            if i not in visited:
                 count += 1
-                visited[i] = True
-                dfs(i)
+                visited.add(i)
+                self.dfs(i, isConnected, visited)
         return count
+
+    def dfs(self, node, isConnected, visited):
+        for j in range(len(isConnected)):
+            if isConnected[node][j] and j not in visited:
+                visited.add(j)
+                self.dfs(j, isConnected, visited)

@@ -64,7 +64,8 @@ class Solution(object):
         for rowOffset, colOffset in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
             ret = self.backtrack(row + rowOffset, col + colOffset, suffix[1:])
             # break instead of return directly to do some cleanup afterwards
-            if ret: break
+            if ret:
+                break
 
         # revert the change, a clean slate and no side-effect
         self.board[row][col] = suffix[0]
