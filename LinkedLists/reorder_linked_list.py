@@ -27,51 +27,46 @@ class ListNode:
         self.val = val
         self.next = next
 
+from typing import *
 class Solution:
-    def reverse(self, head):
-        prev = None
-        current = head
-        while current:
-            next_node = current.next
-            current.next = prev
-            prev = current
-            current = next_node
-        return prev
-
-    def merge(self, head1, head2):
-        temp = ListNode(0)
-        temp_runner = temp
-        while head1 and head2:
-            temp_runner.next = head1
-            head1 = head1.next
-            temp_runner = temp_runner.next
-            temp_runner.next = head2
-            head2 = head2.next
-            temp_runner = temp_runner.next
-        while head1:
-            temp_runner.next = head1
-            head1 = head1.next
-            temp_runner = temp_runner.next
-        while head2:
-            temp_runner.next = head2
-            head2 = head2.next
-            temp_runner = temp_runner.next
-        return temp.next
-
     def reorderList(self, head: Optional[ListNode]) -> None:
         """
         Do not return anything, modify head in-place instead.
         """
-        if not head or not head.next:
+        # Base Case. When there are less than 3 nodes in the given Linked List
+        if not head or not head.next or not head.next.next:
             return head
-        slow = fast = head
+        slow = head
+        fast = head
+        prev = None
+        # Find the Middle of the Linked List
         while fast and fast.next:
+            prev = slow
             slow = slow.next
             fast = fast.next.next
-        ll1 = head
-        ll2 = slow.next
-        slow.next = None
-        ll2 = self.reverse(ll2)
-        temp_node = ListNode(0)
-        temp_node.next = self.merge(ll1, ll2)
-        return temp_node.next
+
+        # Use Stack to keep a track of the reversed Linked List
+        prev.next = None
+        stack = []
+        while slow:
+            stack.append(slow)
+            slow = slow.next
+
+        # Now change the links of all the Nodes starting from head and until the stack is empty
+        # Use a dummyNode to start the result list
+        dummy = ListNode(-1)
+        runner = dummy
+        origRunner = head
+        while origRunner or stack:
+            if origRunner:
+                runner.next = origRunner
+                runner = runner.next
+                origRunner = origRunner.next
+
+            if stack:
+                runner.next = stack.pop()
+                runner = runner.next
+
+        # Make sure that the last node in the result list points to Null
+        runner.next = None
+        return dummy.next

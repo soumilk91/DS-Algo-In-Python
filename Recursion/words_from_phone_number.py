@@ -30,42 +30,29 @@ Output:
 ]
 """
 
+from typing import *
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+        mapping = {'2': ['a', 'b', 'c'], '3': ['d', 'e', 'f'], '4': ['g', 'h', 'i'], '5': ['j', 'k', 'l'],
+                   '6': ['m', 'n', 'o'], '7': ['p', 'q', 'r', 's'], '8': ['t', 'u', 'v'], '9': ['w', 'x', 'y', 'z']}
 
-def _helper(phone_number, phone_number_index, mapping_dict, slate, results):
-    # Base Case
-    if phone_number_index == len(phone_number):
-        results.append("".join(slate))
-        return
+        result = []
+        self.helper(digits, mapping, 0, [], result)
+        return result
 
-    # Recursive Case
+    def helper(self, digits, mapping, index, slate, result):
+        # Base Case
+        if index == len(digits):
+            result.append("".join(slate[:]))
+            return
 
-    # If number not in mapping_dict do noting
-    if phone_number[phone_number_index] not in mapping_dict:
-        _helper(phone_number, phone_number_index + 1, mapping_dict, slate, results)
-    else:
-        # Create a list of all possible characters for a specific number and loop over them to include the one at a time
-        temp_list = mapping_dict[phone_number[phone_number_index]]
-        for runner in temp_list:
-            slate.append(runner)
-            _helper(phone_number, phone_number_index + 1, mapping_dict, slate, results)
-            slate.pop()
-
-
-def get_words_from_phone_number(phone_number):
-    """
-    Args:
-     phone_number(str)
-    Returns:
-     list_str
-    """
-    # Write your code here.
-    mapping_dict = {'2': ['a', 'b', 'c'], '3': ['d', 'e', 'f'], '4': ['g', 'h', 'i'],
-                    '5': ['j', 'k', 'l'], '6': ['m', 'n', 'o'], '7': ['p', 'q', 'r', 's'],
-                    '8': ['t', 'u', 'v'], '9': ['w', 'x', 'y', 'z']
-                    }
-    results = []
-    _helper(phone_number, 0, mapping_dict, [], results)
-    return results
-
-
-print(get_words_from_phone_number("1234567"))
+        # Recursive Case
+        if digits[index] not in mapping:
+            self.helper(digits, mapping, index + 1, slate, result)
+        else:
+            for char in mapping[digits[index]]:
+                slate.append(char)
+                self.helper(digits, mapping, index + 1, slate, result)
+                slate.pop()

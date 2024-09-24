@@ -20,26 +20,19 @@ output: 3
 """
 
 
-"""
-For your reference:
-class LinkedListNode:
+
+#For your reference:
+class ListNode:
     def __init__(self, value):
         self.value = value
         self.next = None
-"""
-def find_middle_node(head):
-    """
-    Args:
-     head(LinkedListNode_int32)
-    Returns:
-     LinkedListNode_int32
-    """
-    # Write your code here.
-    if head is None or head.next is None:
-        return head
-    slow = head
-    fast = head
-    while fast and fast.next != None:
-        slow = slow.next
-        fast = fast.next.next
-    return slow
+
+from typing import *
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow

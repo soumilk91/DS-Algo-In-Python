@@ -7,30 +7,25 @@ eg: input = [1,2,3]
 Output = [[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1]]
 """
 
-result_list = []
-def _helper(numlist, start_index, slate):
-    #Base Case
-    if start_index == len(numlist):
-        if slate[:] not in result_list:
-            result_list.append(slate[:])
-        return
+from typing import *
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        self.helper(nums, 0, [], result)
+        return result
 
-    #Recursive Case
-    for temp in range(start_index, len(numlist)):
-        # Swap The elements in the list to the first Position in the subproblem
-        numlist[temp], numlist[start_index] = numlist[start_index], numlist[temp]
-        slate.append(numlist[start_index])
+    def helper(self, nums, index, slate, result):
+        # Base Case
+        if index == len(nums):
+            result.append(slate[:])
+            return
 
-        # Call the Recursive Function
-        _helper(numlist, start_index+1, slate)
+        # Permute. Recursive Case
+        for temp in range(index, len(nums)):
+            nums[temp], nums[index] = nums[index], nums[temp]
+            slate.append(nums[index])
+            self.helper(nums, index + 1, slate, result)
 
-        # Pop the element from the slate and swap the elements back to their original places
-        slate.pop()
-        numlist[temp], numlist[start_index] = numlist[start_index], numlist[temp]
-
-
-def permutations(numlist):
-    _helper(numlist, 0, [])
-
-permutations([1,2,2])
-print(result_list)
+            # Swap Again and Pop from Slate
+            nums[temp], nums[index] = nums[index], nums[temp]
+            slate.pop()

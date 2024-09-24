@@ -34,7 +34,8 @@ class Trie:
     def add_word(self, word):
         node = self.root
         for c in word:
-            if c not in node.children: node.children[c] = TrieNode()
+            if c not in node.children:
+                node.children[c] = TrieNode()
             node = node.children[c]
             if node.n < 3:
                 node.words.append(word)

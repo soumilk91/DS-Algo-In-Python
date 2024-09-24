@@ -9,32 +9,25 @@ eg: Input = [1,2,3]
 Output: [[], [1], [2], [3], [1,2], [1,3], [2,3], [1,2,3]]
 """
 
-return_list = []
-def _helper(num_list, start_index, slate):
-    """
-    num_list = input definition
-    start_index = input definition
-    slate = partial result
-    """
-    # Base Case
-    if start_index == len(num_list):
-        return_list.append(slate[:])
-        return
+from typing import *
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        self.helper(nums, 0, [], result)
+        return result
 
-    # Recursive Case
-    # INCLUDE DECISION
+    def helper(self, nums, index, slate, result):
+        # Base Case
+        if index == len(nums):
+            result.append(slate[:])
+            return
 
-    slate.append(num_list[start_index])
-    _helper(num_list, start_index+1, slate)
-    slate.pop()
+        # Recursive Cases
+        # Include
+        slate.append(nums[index])
+        self.helper(nums, index + 1, slate, result)
+        slate.pop()
 
-    # EXCLUDE DECISION
-    _helper(num_list, start_index+1, slate)
+        # Exclude
+        self.helper(nums, index + 1, slate, result)
 
-def subsets(numlist):
-    # Root Case
-    _helper(numlist, 0, [])
-    print(return_list)
-
-
-subsets([1,2,3,4])

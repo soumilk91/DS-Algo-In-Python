@@ -18,7 +18,7 @@ output: "12345"
 
 """
 
-
+from typing import *
 class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
         result = []
@@ -31,8 +31,7 @@ class Solution:
             result.append("".join(slate[:]))
             return
 
-            # Recursive Case
-
+            # Recursive Cases
         if s[index].isdigit():
             slate.append(s[index])
             self.helper(s, index + 1, slate, result)

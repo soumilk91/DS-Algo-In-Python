@@ -7,39 +7,28 @@ eg: [1,2,3]
 output: [[1,2], [3]]
 """
 
+from typing import *
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result = []
+        self.helper(candidates, target, 0, [], result)
+        return result
 
-def _helper(arr, target, index, slate, results):
-    # Base Case
-    if target == 0 and slate[:] not in results:
-        results.append(slate[:])
-        return
+    def helper(self, candidates, target, index, slate, result):
+        # Base Case: Target is reached
+        if target == 0:
+            result.append(slate[:])
+            return
 
-    # Backtracking Case/ Pruning
-    if target <= 0 or index == len(arr):
-        return
+        # Base Case: Target is exceeded or no more candidates
+        if target < 0 or index == len(candidates):
+            return
 
-    # Recursive Case
-    # Include
-    slate.append(arr[index])
-    _helper(arr, target - arr[index], index + 1, slate, results)
-    slate.pop()
+        # Recursive Case:
+        # Option 1: Include the current candidate and stay on the same index (since candidates can be reused)
+        slate.append(candidates[index])
+        self.helper(candidates, target - candidates[index], index, slate, result)
+        slate.pop()
 
-    # Exculde
-    _helper(arr, target, index + 1, slate, results)
-
-
-def generate_all_combinations(arr, target):
-    """
-    Args:
-     arr(list_int32)
-     target(int32)
-    Returns:
-     list_list_int32
-    """
-    # Write your code here.
-    results = []
-    _helper(arr, target, 0, [], results)
-    return results
-
-
-print(generate_all_combinations([1,2,3], 3))
+        # Option 2: Exclude the current candidate and move to the next index
+        self.helper(candidates, target, index + 1, slate, result)
