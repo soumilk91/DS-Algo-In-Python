@@ -22,37 +22,39 @@ Input: grid = [
 Output: 6
 """
 
-from collections import deque
 from typing import *
+from collections import deque
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        if not grid:
+        if not grid or not grid[0]:
             return 0
-
-        def bfs(r, c):
-            directions = [(-1, 0), (1, 0), (0, 1), (0, -1)]
-            currentArea = 0
-            queue = deque([(r, c)])
-            visited.add((r, c))
-            while queue:
-                row, col = queue.popleft()
-                currentArea += 1
-                for direction in directions:
-                    newR, newC = row + direction[0], col + direction[1]
-                    if 0 <= newR < ROWS and 0 <= newC < COLS and (newR, newC) not in visited and grid[newR][newC] == 1:
-                        visited.add((newR, newC))
-                        queue.append((newR, newC))
-            return currentArea
-
-        islands = 0
         maxArea = 0
+        islands = 0
         visited = set()
         ROWS = len(grid)
         COLS = len(grid[0])
         for row in range(ROWS):
             for col in range(COLS):
                 if grid[row][col] == 1 and (row, col) not in visited:
+                    currArea = self.bfs(grid, row, col, visited)
+                    maxArea = max(maxArea, currArea)
                     islands += 1
-                    currentArea = bfs(row, col)
-                    maxArea = max(maxArea, currentArea)
         return maxArea
+
+    def bfs(self, grid, row, col, visited):
+        queue = deque([])
+        queue.append((row, col))
+        visited.add((row, col))
+        currArea = 1
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        while queue:
+            currRow, currCol = queue.popleft()
+            for direction in directions:
+                newRow, newCol = currRow + direction[0], currCol + direction[1]
+                if 0 <= newRow < len(grid) and 0 <= newCol < len(grid[0]) and grid[newRow][newCol] == 1 and (
+                newRow, newCol) not in visited:
+                    visited.add((newRow, newCol))
+                    queue.append((newRow, newCol))
+                    currArea += 1
+        return currArea
+

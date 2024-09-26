@@ -20,32 +20,42 @@ Explanation: In the picture above, the grid on the left is grid1 and the grid on
 The 1s colored red in grid2 are those considered to be part of a sub-island. There are three sub-islands.
 """
 
+from collections import deque
 from typing import *
 class Solution:
     def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
-        # simultaneous Traverse
-        ROWS = len(grid2)
-        COLS = len(grid2[0])
-
-        def dfs(r, c):
-            if r < 0 or c < 0 or r == ROWS or c == COLS or grid2[r][c] == 0 or (r, c) in visited:
-                return True
-            visited.add((r, c))
-            result = True
-            if grid1[r][c] == 0:
-                result = False
-            result = dfs(r - 1, c) and result
-            result = dfs(r + 1, c) and result
-            result = dfs(r, c - 1) and result
-            result = dfs(r, c + 1) and result
-            return result
-
+        if not grid2 or not grid2[0]:
+            return 0
+        ROWS, COLS = len(grid2), len(grid2[0])
         visited = set()
-        count = 0
+        subislands = 0
 
         for row in range(ROWS):
             for col in range(COLS):
-                if grid2[row][col] == 1 and (row, col) not in visited and dfs(row, col):
-                    count += 1
-        return count
+                if (row, col) not in visited and grid2[row][col] == 1:
+                    if self.bfs(grid1, grid2, row, col, visited):
+                        subislands += 1
+
+        return subislands
+
+    def bfs(self, grid1, grid2, row, col, visited):
+        queue = deque([(row, col)])
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        visited.add((row, col))
+        is_sub_island = True
+
+        while queue:
+            currRow, currCol = queue.popleft()
+
+            if grid1[currRow][currCol] != 1:
+                is_sub_island = False
+
+            for direction in directions:
+                newRow, newCol = currRow + direction[0], currCol + direction[1]
+                if 0 <= newRow < len(grid2) and 0 <= newCol < len(grid2[0]) and grid2[newRow][newCol] == 1 and (
+                newRow, newCol) not in visited:
+                    visited.add((newRow, newCol))
+                    queue.append((newRow, newCol))
+
+        return is_sub_island
 

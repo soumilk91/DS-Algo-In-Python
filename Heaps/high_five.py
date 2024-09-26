@@ -28,24 +28,19 @@ Output: [[1,100],[7,100]]
 
 from typing import *
 import heapq
+from collections import defaultdict
 class Solution:
     def highFive(self, items: List[List[int]]) -> List[List[int]]:
-        collection_dict = {}
+        compare_dict = defaultdict(list)
         for student, score in items:
-            if student not in collection_dict:
-                collection_dict[student] = []
-                heapq.heappush(collection_dict[student], -score)
-            else:
-                heapq.heappush(collection_dict[student], -score)
+            heapq.heappush(compare_dict[student], score)
 
+        keys = sorted(compare_dict.keys())
         result = []
-        keys = sorted(collection_dict.keys())
         for key in keys:
-            temp = []
-            counter = 0
-            while counter < 5:
-                temp.append(-heapq.heappop(collection_dict[key]))
-                counter += 1
-            average = sum(temp) // 5
-            result.append([key, average])
+            temp = [key]
+            while len(compare_dict[key]) > 5:
+                heapq.heappop(compare_dict[key])
+            temp.append(sum(compare_dict[key]) // len(compare_dict[key]))
+            result.append(temp)
         return result
