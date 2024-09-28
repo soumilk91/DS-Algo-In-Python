@@ -1,4 +1,4 @@
-1. Sliding Window
+## Sliding Window
 
 The Sliding Window pattern is used to perform a required operation on a specific window size of a given array or
 linked list, such as finding the longest subarray containing all 1s. Sliding Windows start from the 1st element and
@@ -17,7 +17,7 @@ String anagrams (hard)
 =======================
 
 
-2. Two Pointers or Iterators
+## Two Pointers or Iterators
 
 Two Pointers is a pattern where two pointers iterate through the data structure in tandem until one or both of the pointers
 hit a certain condition.Two Pointers is often useful when searching pairs in a sorted array or linked list; for example,
@@ -40,7 +40,7 @@ Comparing strings that contain backspaces (medium)
 
 =======================
 
-3. Fast and Slow pointers
+## Fast and Slow pointers
 The Fast and Slow pointer approach, also known as the Hare & Tortoise algorithm, is a pointer algorithm that uses two
 pointers which move through the array (or sequence/linked list) at different speeds. This approach is quite useful when
 dealing with cyclic linked lists or arrays.
@@ -64,7 +64,7 @@ Cycle in a Circular Array (hard)
 
 =======================
 
-4. Merge Intervals
+## Merge Intervals
 
 The Merge Intervals pattern is an efficient technique to deal with overlapping intervals.
 In a lot of problems involving intervals, you either need to find overlapping intervals or merge intervals if they overlap.
@@ -86,7 +86,7 @@ Maximum CPU Load (hard)
 
 =======================
 
-5. Cyclic sort
+## Cyclic sort
 
 This pattern describes an interesting approach to deal with problems involving arrays containing numbers in a given range.
 The Cyclic Sort pattern iterates over the array one number at a time, and if the current number you are iterating is not
@@ -104,7 +104,7 @@ Find the Smallest Missing Positive Number (medium)
 
 =======================
 
-6. In-place reversal of linked list
+## In-place reversal of linked list
 
 In a lot of problems, you may be asked to reverse the links between a set of nodes of a linked list.
 Often, the constraint is that you need to do this in-place, i.e., using the existing node objects and without
@@ -125,7 +125,7 @@ Reverse every K-element Sub-list (medium)
 
 =======================
 
-7. Tree BFS
+## Tree BFS
 
 This pattern is based on the Breadth First Search (BFS) technique to traverse a tree and uses a queue to keep
 track of all the nodes of a level before jumping onto the next level. Any problem involving the traversal of a tree
@@ -145,7 +145,7 @@ Zigzag Traversal (medium)
 
 =======================
 
-8. Tree DFS
+## Tree DFS
 
 Tree DFS is based on the Depth First Search (DFS) technique to traverse a tree.
 
@@ -168,7 +168,7 @@ All Paths for a Sum (medium)
 
 =======================
 
-9. Two heaps
+## Two heaps
 
 In many problems, we are given a set of elements such that we can divide them into two parts.
 To solve the problem, we are interested in knowing the smallest element in one part and the biggest element in the other part.
@@ -190,7 +190,7 @@ Find the Median of a Number Stream (medium)
 
 =======================
 
-10. Subsets
+## Subsets
 
 A huge number of coding interview problems involve dealing with Permutations and Combinations of a
 given set of elements. The pattern Subsets describes an efficient Breadth First Search (BFS) approach to handle
@@ -216,7 +216,7 @@ String Permutations by changing case (medium)
 
 =======================
 
-11. Modified binary search
+## Modified binary search
 
 Whenever you are given a sorted array, linked list, or matrix, and are asked to find a certain element,
 the best algorithm you can use is the Binary Search. This pattern describes an efficient way to handle all problems
@@ -239,7 +239,7 @@ Order-agnostic Binary Search (easy)Search in a Sorted Infinite Array (medium)
 
 =======================
 
-12. Top K elements
+## Top K elements
 
 Any problem that asks us to find the top/smallest/frequent ‘K’ elements among a given set falls under this pattern.
 
@@ -263,7 +263,7 @@ Top ‘K’ Frequent Numbers (medium)
 
 =======================
 
-13. K-way Merge
+## K-way Merge
 
 K-way Merge helps you solve problems that involve a set of sorted arrays.
 
@@ -289,7 +289,7 @@ K Pairs with Largest Sums (Hard)
 
 =======================
 
-14. Topological sort
+## Topological sort
 
 Topological Sort is used to find a linear ordering of elements that have dependencies on each other.
 For example, if event ‘B’ is dependent on event ‘A’, ‘A’ comes before ‘B’ in topological ordering.
