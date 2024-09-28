@@ -14,8 +14,6 @@ Maximum sum subarray of size ‘K’ (easy)
 Longest substring with ‘K’ distinct characters (medium)
 String anagrams (hard)
 
-=======================
-
 
 ## Two Pointers or Iterators
 
@@ -38,7 +36,6 @@ Squaring a sorted array (easy)
 Triplets that sum to zero (medium)
 Comparing strings that contain backspaces (medium)
 
-=======================
 
 ## Fast and Slow pointers
 The Fast and Slow pointer approach, also known as the Hare & Tortoise algorithm, is a pointer algorithm that uses two
@@ -62,8 +59,6 @@ Linked List Cycle (easy)
 Palindrome Linked List (medium)
 Cycle in a Circular Array (hard)
 
-=======================
-
 ## Merge Intervals
 
 The Merge Intervals pattern is an efficient technique to deal with overlapping intervals.
@@ -84,8 +79,6 @@ Merge interval problem patterns:
 Intervals Intersection (medium)
 Maximum CPU Load (hard)
 
-=======================
-
 ## Cyclic sort
 
 This pattern describes an interesting approach to deal with problems involving arrays containing numbers in a given range.
@@ -101,8 +94,6 @@ Problems featuring cyclic sort pattern:
 
 Find the Missing Number (easy)
 Find the Smallest Missing Positive Number (medium)
-
-=======================
 
 ## In-place reversal of linked list
 
@@ -123,8 +114,6 @@ Problems featuring in-place reversal of linked list pattern:
 Reverse a Sub-list (medium)
 Reverse every K-element Sub-list (medium)
 
-=======================
-
 ## Tree BFS
 
 This pattern is based on the Breadth First Search (BFS) technique to traverse a tree and uses a queue to keep
@@ -142,8 +131,6 @@ Problems featuring Tree BFS pattern:
 
 Binary Tree Level Order Traversal (easy)
 Zigzag Traversal (medium)
-
-=======================
 
 ## Tree DFS
 
@@ -165,9 +152,6 @@ Problems featuring Tree DFS pattern:
 Sum of Path Numbers (medium)
 All Paths for a Sum (medium)
 
-
-=======================
-
 ## Two heaps
 
 In many problems, we are given a set of elements such that we can divide them into two parts.
@@ -187,8 +171,6 @@ Sometimes, useful in problems featuring a binary tree data structure
 Problems featuring
 
 Find the Median of a Number Stream (medium)
-
-=======================
 
 ## Subsets
 
@@ -214,8 +196,6 @@ Problems featuring Subsets pattern:
 Subsets With Duplicates (easy)
 String Permutations by changing case (medium)
 
-=======================
-
 ## Modified binary search
 
 Whenever you are given a sorted array, linked list, or matrix, and are asked to find a certain element,
@@ -236,8 +216,6 @@ Here is a visual representation of the Modified Binary Search pattern:
 Problems featuring the Modified Binary Search pattern:
 
 Order-agnostic Binary Search (easy)Search in a Sorted Infinite Array (medium)
-
-=======================
 
 ## Top K elements
 
@@ -260,8 +238,6 @@ Problems featuring Top ‘K’ Elements pattern:
 
 Top ‘K’ Numbers (easy)
 Top ‘K’ Frequent Numbers (medium)
-
-=======================
 
 ## K-way Merge
 
@@ -286,8 +262,6 @@ Problems featuring the K-way Merge pattern:
 
 Merge K Sorted Lists (medium)
 K Pairs with Largest Sums (Hard)
-
-=======================
 
 ## Topological sort
 
@@ -321,7 +295,5 @@ Problems featuring the Topological Sort pattern:
 
 Task scheduling (medium)
 Minimum height of a tree (hard)
-
-=======================
 
 
