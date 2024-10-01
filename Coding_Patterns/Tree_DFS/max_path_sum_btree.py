@@ -31,6 +31,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+from typing import *
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         maxPath = float('-inf')
