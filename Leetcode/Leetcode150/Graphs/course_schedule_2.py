@@ -33,7 +33,8 @@ Output: [0]
 
 """
 
-
+import collections
+from typing import *
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         # Create a prerequisite dict. (containing courses (nodes) that need to be taken (visited)

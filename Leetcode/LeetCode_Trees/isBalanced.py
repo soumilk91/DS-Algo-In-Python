@@ -26,6 +26,7 @@ Output: true
 """
 
 from typing import *
+from collections import defaultdict
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -34,15 +35,21 @@ class TreeNode:
         self.right = right
 
 class Solution:
+    treeHeights = defaultdict(int)
+
     def height(self, node):
         if not node:
             return 0
-        return 1 + max(self.height(node.left), self.height(node.right))
+        if node not in self.treeHeights:
+            self.treeHeights[node] = 1 + max(self.height(node.left), self.height(node.right))
+        returnHeight = self.treeHeights[node]
+        return returnHeight
 
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         if not root:
             return True
-        leftheight = self.height(root.left)
-        rightheight = self.height(root.right)
 
-        return (abs(leftheight - rightheight) < 2 and self.isBalanced(root.left) and self.isBalanced(root.right))
+        leftHeight = self.height(root.left)
+        rightHeight = self.height(root.right)
+
+        return (abs(leftHeight - rightHeight) < 2 and self.isBalanced(root.left) and self.isBalanced(root.right))

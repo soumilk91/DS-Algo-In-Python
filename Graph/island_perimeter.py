@@ -12,6 +12,22 @@ Determine the perimeter of the island.
 """
 
 from typing import *
+
+class Solution1:
+    def islandPerimeter(self, grid: List[List[int]]) -> int:
+        ROWS = len(grid)
+        COLS = len(grid[0])
+        result = 0
+        for row in range(ROWS):
+            for col in range(COLS):
+                if grid[row][col] == 1:
+                    result += 4
+
+                    if row > 0 and grid[row - 1][col] == 1:
+                        result -= 2
+                    if col > 0 and grid[row][col - 1] == 1:
+                        result -= 2
+        return result
 class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
         visited = set()
@@ -35,4 +51,3 @@ class Solution:
             for col in range(len(grid[0])):
                 if grid[row][col] == 1:
                     return dfs(row, col)
-

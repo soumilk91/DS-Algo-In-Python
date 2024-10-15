@@ -48,8 +48,10 @@ class Solution:
         # Step 3). flip the captured cells ('O'->'X') and the escaped one ('E'->'O')
         for r in range(self.ROWS):
             for c in range(self.COLS):
-                if board[r][c] == 'O':   board[r][c] = 'X'  # captured
-                elif board[r][c] == 'E': board[r][c] = 'O'  # escaped
+                if board[r][c] == 'O':
+                    board[r][c] = 'X'  # captured
+                elif board[r][c] == 'E':
+                    board[r][c] = 'O'  # escaped
 
 
     def BFS(self, board, row, col):

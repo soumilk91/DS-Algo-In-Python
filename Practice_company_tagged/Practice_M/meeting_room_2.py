@@ -18,15 +18,14 @@ Input: intervals = [[7,10],[2,4]]
 Output: 1
 """
 import heapq
+from typing import *
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-        h =[]
-        sort = sorted(intervals)
-        for i in sort:
-            # need a new meeting room
-            if h == [] or h[0] >i[0]:
-                heapq.heappush(h,i[1])
-            # don't need a new meeting room, just update the end time
+        heap = []
+        intervals.sort()
+        for interval in intervals:
+            if not heap or heap[0] > interval[0]:
+                heapq.heappush(heap, interval[1])
             else:
-                heapq.heapreplace(h,i[1])
-        return len(h)
+                heapq.heapreplace(heap, interval[1])
+        return len(heap)

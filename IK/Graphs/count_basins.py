@@ -20,8 +20,8 @@ Example One
 ]
 }
 Output:
-
 [2, 7]
+
 There are two basins, one consists of two cells and the other consists of seven. They are labeled with A’s and B’s here:
 B B A
 B B A

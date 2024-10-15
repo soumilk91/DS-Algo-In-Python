@@ -21,7 +21,7 @@ Input: root = [1,2]
 Output: 1
 """
 
-
+from typing import *
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -43,4 +43,3 @@ class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.depth(root)
         return self.answer - 1
-

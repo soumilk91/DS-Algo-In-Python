@@ -40,7 +40,8 @@ Input: board = [[-1,-1],[-1,3]]
 Output: 1
 """
 
-
+from typing import *
+from collections import deque
 class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
         n = len(board)
@@ -53,7 +54,7 @@ class Solution:
                 return n - 1 - r, n - 1 - c
 
         seen = set()
-        queue = collections.deque()
+        queue = deque()
         queue.append((1, 0))
         while queue:
             label, step = queue.popleft()

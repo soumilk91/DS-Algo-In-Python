@@ -103,7 +103,7 @@ class GraphTheory:
                     parent[w] = temp
                     stack.append(w)
 
-    def dfs_recursive(self, vertex):
+    def dfs_recursive(self, vertex, visited, parent):
         visited[vertex] = True
         for w in self.graph[vertex]:
             if w not in visited:
