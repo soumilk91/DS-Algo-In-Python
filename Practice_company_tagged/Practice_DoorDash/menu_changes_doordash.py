@@ -66,6 +66,8 @@ def build_node_map(node, node_map):
     node_map[node.key] = node
     for child in node.children:
         build_node_map(child, node_map)
+    return
+
 
 
 # Function to compare two trees
