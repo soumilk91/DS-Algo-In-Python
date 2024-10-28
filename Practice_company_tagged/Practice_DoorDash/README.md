@@ -18,7 +18,7 @@ Consolidated List of Possible Questions to Practice: https://leetcode.com/discus
 https://leetcode.com/discuss/interview-question/4154082/Doordash-or-Phone-or-Eligible-order-sequence/
 1) Graphs 
 2) Binary Search 
-3) Trees 
+3) Trees and Tries
 4) DP
 5) Intervals
 6) Linked Lists 
