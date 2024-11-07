@@ -28,7 +28,6 @@ class Solution:
             return None
         node_dict = {}
         node_dict[node] = Node(node.val, [])
-        visited = set()
         queue = deque([node])
         while queue:
             currNode = queue.popleft()

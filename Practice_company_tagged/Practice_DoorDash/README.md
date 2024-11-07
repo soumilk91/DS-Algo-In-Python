@@ -11,6 +11,7 @@
 8) Design Instagram. Actual Question: Design a platform where users can upload photos of their food, follow other users and view a chronological timeline.
 9) https://leetcode.com/company/doordash/discuss/1629930/Doordash-or-PhoneScreen-or-Onsite
 10) Design a Distributed Schedular
+11) Design Slack. Concentrate on the Peer to Peer Communication part. Similar to Design Whatsapp Or Messenger I guess
 
 # Coding Round (Things You should be concentrating on in order)
 https://leetcode.com/company/doordash/?favoriteSlug=doordash-all

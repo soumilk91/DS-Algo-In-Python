@@ -19,7 +19,7 @@ Output: null
 Explanation: There is no in-order successor of the current node, so the answer is null.
 """
 
-
+from typing import *
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):

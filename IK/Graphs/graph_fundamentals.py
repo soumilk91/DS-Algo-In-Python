@@ -7,24 +7,19 @@ Some Basic Fundamental Functions on Graph Theory
 """
 
 import os
-
+from collections import defaultdict
 class GraphTheory:
     def __init__(self):
-        self.graph = {}
+        self.graph = defaultdict(list)
 
     def add_edge(self, source, destination, bidirectional=False):
         # Add 2 nodes to the graph if not present
         # Both start and end are two separate nodes in the graph
         # Create adj list to represent the connection between them
-        if source not in self.graph:
-            self.graph[source] = [destination]
-        else:
-            self.graph[source].append(destination)
+        self.graph[source].append(destination)
 
 
         # Now if Bidirectional is True Create the same thing for the other item
-        if destination not in self.graph:
-            self.graph[destination] = []
         if bidirectional:
             self.graph[destination].append(source)
 

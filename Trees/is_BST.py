@@ -77,16 +77,16 @@ Recursive Function to check BST Property
 
 """
 
-"""
-For your reference:
-class BinaryTreeNode:
+
+#For your reference:
+class TreeNode:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
-"""
 
 
+from typing import *
 class SolutionRecursive:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         if not root:

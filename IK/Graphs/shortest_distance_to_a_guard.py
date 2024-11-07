@@ -52,37 +52,41 @@ def find_shortest_distance_from_a_guard(grid):
     Returns:
      list_list_int32
     """
-    # Write your code here.
-    rmax = len(grid)
-    cmax = len(grid[0])
+    if not grid:
+        return grid
 
-    def bfs(queue):
-        nei = [(1, 0), (-1, 0), (0, 1), (0, -1)]
-        while queue:
-            (ci, cj, level) = queue.popleft()
-            for di, dj in nei:
-                ni, nj = ci + di, cj + dj
-                if ni < 0 or ni >= rmax:
-                    continue
-                if nj < 0 or nj >= cmax:
-                    continue
-                if grid[ni][nj] == 'O':
-                    grid[ni][nj] = level + 1
-                    queue.append((ni, nj, level + 1))
-        return -1
-
+    ROWS, COLS = len(grid), len(grid[0])
     queue = deque()
-    for i in range(rmax):
-        for j in range(cmax):
-            if grid[i][j] == 'W':
-                grid[i][j] = -1
-            elif grid[i][j] == 'G':
-                grid[i][j] = 0
-                queue.append((i, j, 0))
-    bfs(queue)
+    # Initialize the distance matrix with infinity for open spaces and -1 for walls
+    distance = [[-1 if grid[r][c] == 'W' else float('inf') for c in range(COLS)] for r in range(ROWS)]
 
-    for i in range(rmax):
-        for j in range(cmax):
-            if grid[i][j] == 'O':
-                grid[i][j] = -1
-    return grid
+    # Enqueue all guards and set their distances to 0
+    for row in range(ROWS):
+        for col in range(COLS):
+            if grid[row][col] == "G":
+                queue.append((row, col))
+                distance[row][col] = 0
+
+    # Directions for up, down, left, right
+    directions = [(-1, 0), (1, 0), (0, 1), (0, -1)]
+
+    # Perform BFS
+    while queue:
+        row, col = queue.popleft()
+        currDistance = distance[row][col]
+
+        for dr, dc in directions:
+            newRow, newCol = row + dr, col + dc
+            if 0 <= newRow < ROWS and 0 <= newCol < COLS and grid[newRow][newCol] == "O":
+                # If the current path offers a shorter distance, update it
+                if distance[newRow][newCol] > currDistance + 1:
+                    distance[newRow][newCol] = currDistance + 1
+                    queue.append((newRow, newCol))
+
+    # Replace 'inf' with -1 for cells that can't reach a guard
+    for r in range(ROWS):
+        for c in range(COLS):
+            if distance[r][c] == float('inf'):
+                distance[r][c] = -1
+
+    return distance

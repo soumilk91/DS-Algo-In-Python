@@ -16,7 +16,7 @@ Input: n = 5, edges = [[0,1],[1,2],[2,3],[3,4]]
 Output: 1
 """
 
-
+from typing import *
 class Solution:
     def dfs(self, source, graph, visited):
         # Change the visited Array
