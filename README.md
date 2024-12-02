@@ -1,3 +1,41 @@
+### System Design Questions for Practice 
+
+* Design review and rating system for food items of restaurants.
+* Design Facebook/Instagram News Feed
+* Design a system which accepts reviews from customers on food items.
+* Design a donation app for a two-week-long charity event
+* Design an online coding platform like Leetcode
+* Design a Distributed Schedular
+* Design a Chat System (Whatsapp/slack/imessage/fb messenger, etc)
+* Design Tagging System
+* Design Social Media Comments, Likes, Follow
+* Design Instagram
+* Design Youtube
+* Design Google Docs
+* Design stack overflow
+* Design Quora
+* Design Google Maps
+* Design Uber/lyft/ola
+* Design Doordash/Uber/Yelp
+* Design Twitter
+* Design URL Shortening Service
+* Design a Web Crawler
+* Design a Typeahead Suggestion
+
+### Important links to learn and practice System Design interview Questions
+
+* https://www.educative.io/courses/grokking-the-system-design-interview
+* https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction
+* https://codemia.io/system-design
+* https://github.com/madd86/awesome-system-design
+* https://github.com/donnemartin/system-design-primer
+* https://www.karanpratapsingh.com/courses/system-design
+* https://www.youtube.com/@gkcs
+* https://www.youtube.com/@codeKarle
+* https://www.youtube.com/@jordanhasnolife5163
+* https://www.youtube.com/@hello_interview
+* https://www.youtube.com/@ByteByteGo
+
 ### Software Design Patters Study
 
 ## Two Pointer Patterns

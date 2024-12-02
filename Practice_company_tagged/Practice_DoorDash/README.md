@@ -12,6 +12,9 @@
 9) https://leetcode.com/company/doordash/discuss/1629930/Doordash-or-PhoneScreen-or-Onsite
 10) Design a Distributed Schedular
 11) Design Slack. Concentrate on the Peer to Peer Communication part. Similar to Design Whatsapp Or Messenger I guess
+12) Design Tagging System
+13) Design Social Media Comments, Likes, Follow
+14) Design Snake & Ladder Game
 
 # Coding Round (Things You should be concentrating on in order)
 https://leetcode.com/company/doordash/?favoriteSlug=doordash-all
