@@ -16,11 +16,24 @@
 * Design Quora
 * Design Google Maps
 * Design Uber/lyft/ola
-* Design Doordash/Uber/Yelp
+* Design a Proximity Service like Doordash/Uber/Yelp
 * Design Twitter
 * Design URL Shortening Service
 * Design a Web Crawler
 * Design a Typeahead Suggestion
+* Design Real-Time Notification System
+* Design a Rate Limiter
+* Design a Log ingestion System 
+* Desing a Collaborative Document Editor (Google Docs)
+* Design a Voting or a Polling System 
+* Design a Ticket Booking System 
+* Design an Ecommerce Checkout Service 
+* Design a Key Value Store
+* Design a Hotel Reservation System 
+* Design a Payment System 
+* Design a Digital Wallet
+* Design a Stock Exchange 
+* Design ChatGPT
 
 ### Important links to learn and practice System Design interview Questions
 
