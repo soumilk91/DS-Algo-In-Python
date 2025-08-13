@@ -21,25 +21,24 @@ Output: [[],[0]]
 """
 
 from typing import *
+from typing import List
+
+
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        result = set()
+        nums.sort()  # Sort to group duplicates
+        result = []
         self.helper(nums, 0, [], result)
         return result
 
     def helper(self, nums, index, slate, result):
-        # Base Case
-        if index == len(nums):
-            temp = tuple(sorted(slate[:]))
-            if temp not in result:
-                result.add(temp)
-            return
+        result.append(slate[:])  # Always add current subset
 
-        # Recursive Cases
-        # Include
-        slate.append(nums[index])
-        self.helper(nums, index + 1, slate, result)
-        slate.pop()
+        for i in range(index, len(nums)):
+            # Skip duplicates in the same recursive level
+            if i > index and nums[i] == nums[i - 1]:
+                continue
+            slate.append(nums[i])
+            self.helper(nums, i + 1, slate, result)
+            slate.pop()
 
-        # Exclude
-        self.helper(nums, index + 1, slate, result)

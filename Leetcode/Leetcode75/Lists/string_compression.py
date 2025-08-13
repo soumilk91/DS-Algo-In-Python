@@ -35,24 +35,29 @@ Output: Return 4, and the first 4 characters of the input array should be: ["a",
 Explanation: The groups are "a" and "bbbbbbbbbbbb". This compresses to "ab12".
 """
 
+
 class Solution:
-    def compress(self, chars: List[str]) -> int:
-        if not chars:
-            return 0
-        mychar = chars[0]
-        count = 0
-        length = len(chars)
-        chars.append(" ") # Append a space so last char group is not left out in loop
-        for i in range(length+1): #+1 for extra space char we added
-            char = chars.pop(0)
-            if char == mychar: #if same character then just increase the count
+    def compress(self, chars):
+        write = 0  # Where to write in the array
+        read = 0  # Where we are reading from
+
+        while read < len(chars):
+            char = chars[read]  # current char
+            count = 0
+
+            # Count occurrences of the current char
+            while read < len(chars) and chars[read] == char:
+                read += 1
                 count += 1
-            else:
-                if count == 1: #if not same then append the char to chars
-                    chars.append(mychar) #if count is 1 don't append count
-                elif count > 1:
-                    chars.append(mychar)
-                    chars += (list(str(count))) #if count > 1 append count as a string
-                mychar = char #update mychar as the new different char in chars
-                count = 1 #reset count to 1 as we have already read the new char
-        return len(chars) #since all previous are popped, only the answer remains in chars now
+
+            # Write the char
+            chars[write] = char
+            write += 1
+
+            # If count > 1, write each digit separately
+            if count > 1:
+                for digit in str(count):
+                    chars[write] = digit
+                    write += 1
+
+        return write
