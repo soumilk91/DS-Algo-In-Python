@@ -22,22 +22,20 @@ class TreeNode:
         self.val = val
         self.left = left
         self.right = right
+
 from typing import *
 class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
-        result = 0
-        if not root:
-            return result
-        from collections import deque
-        queue = deque([root])
-        while queue:
-            node = queue.popleft()
-            if node.val >= low and node.val <= high:
-                print(node.val)
-                result += node.val
+        def dfs(node):
+            nonlocal ans
+            if node:
+                if low <= node.val <= high:
+                    ans += node.val
+                if low < node.val:
+                    dfs(node.left)
+                if node.val < high:
+                    dfs(node.right)
 
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-        return result
+        ans = 0
+        dfs(root)
+        return ans

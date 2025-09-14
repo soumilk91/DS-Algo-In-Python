@@ -15,31 +15,24 @@ Output: [1,2,3,4]
 """
 
 from typing import *
+from collections import defaultdict
 class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
-        """
-        :type matrix: List[List[int]]
-        :rtype: List[int]
-        """
-        d = {}
-        # loop through matrix
-        for i in range(len(mat)):
-            for j in range(len(mat[i])):
-                # if no entry in dictionary for sum of indices aka the diagonal, create one
-                if i + j not in d:
-                    d[i + j] = [mat[i][j]]
-                else:
-                    # If you've already passed over this diagonal, keep adding elements to it!
-                    d[i + j].append(mat[i][j])
-            # we're done with the pass, let's build our answer array
-        ans = []
-        # look at the diagonal and each diagonal's elements
-        for entry in d.items():
-            # each entry looks like (diagonal level (sum of indices), [elem1, elem2, elem3, ...])
-            # snake time, look at the diagonal level
-            if entry[0] % 2 == 0:
-                # Here we append in reverse order because its an even numbered level/diagonal.
-                [ans.append(x) for x in entry[1][::-1]]
+        digonal_dict = defaultdict(list)
+        ROWS = len(mat)
+        COLS = len(mat[0])
+        minDigonal = float("inf")
+        maxDigonal = float("-inf")
+        for row in range(ROWS):
+            for col in range(COLS):
+                digonal_dict[(row + col)].append(mat[row][col])
+                minDigonal = min(minDigonal, row + col)
+                maxDigonal = max(maxDigonal, row + col)
+        result = []
+        for digonal in range(minDigonal, maxDigonal + 1):
+            temp = digonal_dict[digonal]
+            if digonal % 2 == 0:
+                result.extend(temp[::-1])
             else:
-                [ans.append(x) for x in entry[1]]
-        return ans
+                result.extend(temp)
+        return result        

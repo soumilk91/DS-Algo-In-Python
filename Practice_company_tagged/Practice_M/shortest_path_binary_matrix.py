@@ -32,42 +32,29 @@ Output: -1
 
 from collections import deque
 
+from collections import deque
+
+
 class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
-        max_row = len(grid) - 1
-        max_col = len(grid[0]) - 1
-        directions = [
-            (-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
-
-        # Helper function to find the neighbors of a given cell.
-        def get_neighbours(row, col):
-            for row_difference, col_difference in directions:
-                new_row = row + row_difference
-                new_col = col + col_difference
-                if not (0 <= new_row <= max_row and 0 <= new_col <= max_col):
-                    continue
-                if grid[new_row][new_col] != 0:
-                    continue
-                yield (new_row, new_col)
-
-        # Check that the first and last cells are open.
-        if grid[0][0] != 0 or grid[max_row][max_col] != 0:
+        ROWS = len(grid)
+        COLS = len(grid[0])
+        visited = set()
+        if not grid or not grid[0]:
             return -1
-
-        # Set up the BFS.
-        queue = deque()
-        queue.append((0, 0))
-        grid[0][0] = 1
-
-        # Carry out the BFS.
+        if grid[0][0] != 0 or grid[-1][-1] != 0:
+            return -1
+        queue = deque([])
+        visited.add((0, 0))
+        queue.append((0, 0, 1))
+        directions = [(-1, 0), (1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)]
         while queue:
-            row, col = queue.popleft()
-            distance = grid[row][col]
-            if (row, col) == (max_row, max_col):
-                return distance
-            for neighbour_row, neighbour_col in get_neighbours(row, col):
-                grid[neighbour_row][neighbour_col] = distance + 1
-                queue.append((neighbour_row, neighbour_col))
-
-        # There was no path.
+            row, col, currentNodes = queue.popleft()
+            if row == ROWS - 1 and col == COLS - 1 and grid[row][col] == 0:
+                return currentNodes
+            for direction in directions:
+                newRow, newCol = row + direction[0], col + direction[1]
+                if 0 <= newRow < ROWS and 0 <= newCol < COLS and (newRow, newCol) not in visited and grid[newRow][newCol] == 0:
+                    visited.add((newRow, newCol))
+                    queue.append((newRow, newCol, currentNodes + 1))
         return -1
