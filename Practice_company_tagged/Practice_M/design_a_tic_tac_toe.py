@@ -69,26 +69,55 @@ ticTacToe.move(2, 1, 1); // return 1 (player 1 wins)
 class TicTacToe:
 
     def __init__(self, n: int):
+        self.board = [[0] * n for _ in range(n)]
+        self.ROWS = len(self.board)
+        self.COLS = len(self.board[0])
         self.n = n
-        self.row = [0] * n
-        self.col = [0] * n
-        self.dia = [0] * 2
+
+    def checkResult(self, row, col, player):
+        if self.checkRow(row, col, player):
+            return True
+        if self.checkCol(row, col, player):
+            return True
+        if self.checkDigonal(row, col, player):
+            return True
+        return False
+
+    def checkRow(self, row, col, player):
+        for c in range(self.COLS):
+            if self.board[row][c] != player:
+                return False
+        return True
+
+    def checkDigonal(self, row, col, player):
+        # check main diagonal only if (row, col) is on it
+        if row == col:
+            for i in range(self.n):
+                if self.board[i][i] != player:
+                    break
+            else:
+                return True  # all matched
+
+        # check anti-diagonal only if (row, col) is on it
+        if row + col == self.n - 1:
+            for i in range(self.n):
+                if self.board[i][self.n - 1 - i] != player:
+                    break
+            else:
+                return True  # all matched
+
+        return False
+
+    def checkCol(self, row, col, player):
+        for r in range(self.ROWS):
+            if self.board[r][col] != player:
+                return False
+        return True
 
     def move(self, row: int, col: int, player: int) -> int:
-        if player == 1:
-            self.row[row] += 1
-            self.col[col] += 1
-            if row == col: self.dia[0] += 1
-            if row + col == self.n - 1: self.dia[1] += 1
-            if self.row[row] == self.n or self.col[col] == self.n or self.dia[0] == self.n or self.dia[
-                1] == self.n: return 1
-        else:
-            self.row[row] -= 1
-            self.col[col] -= 1
-            if row == col: self.dia[0] -= 1
-            if row + col == self.n - 1: self.dia[1] -= 1
-            if self.row[row] == -self.n or self.col[col] == -self.n or self.dia[0] == -self.n or self.dia[
-                1] == -self.n: return 2
+        self.board[row][col] = player
+        if self.checkResult(row, col, player):
+            return player
         return 0
 
 # Your TicTacToe object will be instantiated and called as such:

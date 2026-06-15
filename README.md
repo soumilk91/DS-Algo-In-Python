@@ -49,6 +49,7 @@
 * https://www.youtube.com/@hello_interview
 * https://www.youtube.com/@ByteByteGo
 * End Less List of System Design Questions: https://www.hellointerview.com/learn/system-design/in-a-hurry/vote
+* https://systemdesign.io/
 
 ### Software Design Patters Study
 

@@ -27,31 +27,23 @@ Input: s = " 3+5 / 2 "
 Output: 5
 
 """
-
-
 class Solution:
     def calculate(self, s: str) -> int:
-        num = 0
-        pre_op = '+'
+        operation = "+"
         stack = []
-        s += '+'
-
-        for c in s:
-            if c.isdigit():
-                num = num * 10 + int(c)
-            elif c == ' ':
-                pass
-            else:
-                if pre_op == '+':
-                    stack.append(num)
-                elif pre_op == '-':
-                    stack.append(-num)
-                elif pre_op == "*":
-                    operant = stack.pop()
-                    stack.append((operant * num))
-                elif pre_op == '/':
-                    operant = stack.pop()
-                    stack.append(math.trunc(operant / num))
-                num = 0
-                pre_op = c
+        number = 0
+        for index, char in enumerate(s):
+            if char.isdigit():
+                number = (number * 10) + int(char)
+            if char in "+-*/" or index == len(s) - 1:
+                if operation == "+":
+                    stack.append(number)
+                elif operation == "-":
+                    stack.append(-number)
+                elif operation == "*":
+                    stack[-1] *= number
+                else:
+                    stack[-1] = int(stack[-1] / number)
+                operation = char
+                number = 0
         return sum(stack)

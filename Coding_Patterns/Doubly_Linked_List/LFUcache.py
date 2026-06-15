@@ -57,40 +57,38 @@ lfu.get(4);      // return 4
 class LFUCache:
 
     def __init__(self, capacity: int):
-        self.capacity = capacity  # stores the capacity
-        self.di = {}  # stores keys with their frequencies
-        self.lfu = defaultdict(OrderedDict)  # stores frequencies and all keys that have a given frequency
-        self.least = 0  # stores the minimum frequence which exists in the cache. We need this for eviction
-
-    def update(self, key, value=None):  # help function which update the frequency of a key
-        poz = self.di[key] + 1  # if a key frequency was N then after we visit it, the frequency changes to N + 1
-        v = self.lfu[poz - 1].pop(
-            key)  # if we update the position of a key in the cache then we should maintain its last value
-        if value is not None:  # we call the update function in 2 cases: 1. From get function. In this case we maintain its last value; 2. From put function. In this case we should change the key's value with a new one
-            v = value  # 2nd case
-        self.lfu[poz][key], self.di[key] = v, poz  # update the key in both dictionaries
-        if not self.lfu[
-            poz - 1] and self.least == poz - 1:  # if there a no more keys with the Nth frequence, and the Nth frequence was the minimal frequence then we need to increment the minimum frequence
-            self.least += 1
-        return self.lfu[poz][key]  # this line is used only when the updated function was called from the get function
+        self.cap = capacity
+        self.key2val = {}
+        self.key2freq = {}
+        self.freq2key = collections.defaultdict(collections.OrderedDict)
+        self.minf = 0
 
     def get(self, key: int) -> int:
-        return self.update(
-            key) if key in self.di else -1  # if we find a key, then we should update its position and return its value, otherwise we return -1
+        if key not in self.key2val:
+            return -1
+        oldfreq = self.key2freq[key]
+        self.key2freq[key] = oldfreq + 1
+        self.freq2key[oldfreq].pop(key)
+        if not self.freq2key[oldfreq]:
+            del self.freq2key[oldfreq]
+        self.freq2key[oldfreq + 1][key] = 1
+        if self.minf not in self.freq2key:
+            self.minf += 1
+        return self.key2val[key]
 
     def put(self, key: int, value: int) -> None:
-        if not self.capacity: return  # we need this line for the case when the capacity is 0 as we can't put anything
-        if key in self.di:
-            self.update(key, value)  # if the key is already in our cache then we only update its value with a new one
-        else:  # the key isn't in our cache. Its frequence becomes 1
-            if len(self.di) == self.capacity:  # the cache reached its capacity
-                del self.di[self.lfu[self.least].popitem(last=False)[
-                    0]]  # firstly, we remove the key with the minimum frequence, and then we delete the key from the cache
-            self.lfu[1][key] = value  # last 3 lines put the key in the cache
-            self.di[key] = 1
-            self.least = 1
+        if self.cap <= 0:
+            return
+        if key in self.key2val:
+            self.get(key)
+            self.key2val[key] = value
+            return
 
-# Your LFUCache object will be instantiated and called as such:
-# obj = LFUCache(capacity)
-# param_1 = obj.get(key)
-# obj.put(key,value)
+        if len(self.key2val) == self.cap:
+            delkey, _ = self.freq2key[self.minf].popitem(last=False)
+            del self.key2val[delkey]
+            del self.key2freq[delkey]
+        self.key2val[key] = value
+        self.key2freq[key] = 1
+        self.freq2key[1][key] = 1
+        self.minf = 1
